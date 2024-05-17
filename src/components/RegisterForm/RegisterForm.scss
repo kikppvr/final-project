@@ -1,0 +1,168 @@
+.form-register {
+    position: relative;
+    z-index: 1;
+
+    .form-input:not(:placeholder-shown) + .form-label,
+    .form-input:focus + .form-label {
+        top: -10px;
+        left: 40px;
+        font-size: 12px;
+        color: #fff;
+    }
+
+    .form-row {
+        position: relative;
+
+        &:focus,
+        &:active {
+            .form-control {
+                //line
+                &:before {
+                    width: 100%;
+                }
+            }
+
+            .form-label {
+                top: -15px;
+                left: 0;
+                font-size: 12px;
+                color: rgba(#ffffff, 0.85);
+            }
+
+            //line
+            .form-input {
+                &:before {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .form-control {
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+
+        //line
+        &:before {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            background-color: rgba(255, 255, 255, 1);
+            width: 0;
+            height: 1px;
+            transition: 0.3s all ease-in-out;
+            z-index: 1;
+        }
+
+        i {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .gradient-icon {
+
+            display: inline-block;
+            background: #5f2c82;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(280deg, #86e0dd, #8634be);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(280deg, #86e0dd, #8634be); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+            
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+
+            
+
+            // background: -webkit-linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E);
+            // -webkit-background-clip: text;
+            // -webkit-text-fill-color: transparent;
+            // background: linear-gradient(to right, #4BC0C8, #C779D0, #FEAC5E);
+            // -webkit-background-clip: text;
+            // -webkit-text-fill-color: transparent;
+        }
+    }
+
+    .form-label {
+        position: absolute;
+        top: 10px;
+        left: 30px;
+        font-size: 14px;
+        color: rgba(#ffffff, 0.5);
+        transition: 0.3s all ease-in-out;
+    }
+
+    // input:focus + label,
+    // input:valid + label {
+    //     top: -10px;
+    //     left: 10px;
+    //     font-size: 12px;
+    //     color: #fff;
+    // }
+
+    .form-input {
+        font-size: 0.9rem;
+        width: 100%;
+        background-color: transparent;
+        padding: 10px 10px 10px 15px;
+        position: relative;
+
+        // remove bg autofill
+        color: rgba(#ffffff, 0.5) !important;
+        -webkit-text-fill-color: rgba(#ffffff, 0.5) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+
+        &:focus-visible,
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .form-input::placeholder {
+        color: rgba(#ffffff, 0.3);
+        font-size: 0.9rem;
+        font-weight: 300;
+    }
+
+    .errorMessage {
+        margin-top: 5px;
+        font-size: 10px;
+        font-weight: 500;
+        color: rgb(220, 59, 59);
+    }
+}
+
+.btn-submit {
+    margin-top: 0.5rem;
+    background: linear-gradient(
+        to right,
+        rgba(129, 199, 132, 1) 0%,
+        rgba(66, 165, 245, 1) 100%
+    );
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background 0.3s ease; /* Smooth transition for the background gradient */
+
+    &:focus-visible {
+        outline: none;
+    }
+
+    &:hover {
+        background-repeat: no-repeat;
+        background-size: 150% 100%;
+        background: linear-gradient(
+            to right,
+            rgba(66, 165, 245, 1) 0%,
+            rgba(129, 199, 132, 1) 100%
+        );
+    }
+}

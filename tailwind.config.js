@@ -20,6 +20,16 @@ export default {
             32: "32px",
             40: "40px",
          },
+         screens: {
+            'xxs': '320px',   // Mini-mobile devices
+            'xs': '375px',    // Mobile devices
+            'sm': '640px',    // Small devices
+            'md': '768px',    // Tablets
+            'lg': '1024px',   // Large devices
+            'xl': '1280px',   // Extra large devices
+            '2xl': '1440px',  // Larger devices
+            '3xl': '1920px',  // Largest devices
+         },
       },
    },
    plugins: [],
