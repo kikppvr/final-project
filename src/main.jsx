@@ -8,37 +8,37 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 
 const router = createBrowserRouter(
-    // [
-    //     {
-    //         path: "/",
-    //         element: <RegisterPage />
-    //         // element: <HomePage />
-    //     },
-    //     {
-    //         path: "/register",
-    //         element: <RegisterPage />
-    //     },
-    //     {
-    //         path: "/login",
-    //         element: <LoginPage />
-    //     }
-    // ],
-    // {
-    //     basename: "/final-project"
-    // }
     [
         {
             path: "/",
-            element: <App />,
-            children: [
-                { path: "register", element: <RegisterPage /> },
-                { path: "login", element: <LoginPage /> },
-            ],
+            element: <RegisterPage />
+            // element: <HomePage />
         },
+        {
+            path: "/register",
+            element: <RegisterPage />
+        },
+        {
+            path: "/login",
+            element: <LoginPage />
+        }
     ],
-    {
-        basename: "/final-project", // กำหนด basename สำหรับการ deploy บน GitHub Pages
-    }
+    // {
+    //     basename: "/final-project"
+    // }
+    // [
+    //     {
+    //         path: "/",
+    //         element: <App />,
+    //         children: [
+    //             { path: "register", element: <RegisterPage /> },
+    //             { path: "login", element: <LoginPage /> },
+    //         ],
+    //     },
+    // ],
+    // {
+    //     basename: "/final-project", // กำหนด basename สำหรับการ deploy บน GitHub Pages
+    // }
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
