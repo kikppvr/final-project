@@ -1,9 +1,12 @@
 import React from "react";
+import { useState } from "react";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import "./RegisterForm.scss";
 
 function RegisterForm() {
+   const [focusedFields, setFocusedFields] = useState({});
+
    const formSchema = Yup.object({
       name: Yup.string().required("Name is required"),
       username: Yup.string().required("Username is required"),
@@ -13,6 +16,18 @@ function RegisterForm() {
          .required("Password is required"),
       // confirmPassword: Yup.string().required('Confirm Password is required'),
    });
+
+   const handleFocus = (e, values) => {
+      const fieldName = e.target.name;
+      const fieldValue = values[fieldName];
+      if (fieldValue) {
+         console.log(`${fieldName} already has a value: ${fieldValue}`);
+         setFocusedFields((prev) => ({ ...prev, [fieldName]: true }));
+      } else {
+         console.log(`${fieldName} is empty`);
+         setFocusedFields((prev) => ({ ...prev, [fieldName]: false }));
+      }
+   };
 
    const renderError = (message) => <p className="errorMessage">{message}</p>;
 
@@ -32,12 +47,17 @@ function RegisterForm() {
                console.log(values);
             }}
          >
-            {(formik) => (
-               <Form className="grid gap-8 grid-cols-1">
+            {({ handleChange, handleBlur, handleSubmit, values, setFieldTouched }) => (
+               <Form onSubmit={handleSubmit} className="grid gap-8 grid-cols-1">
                   <div className="form-row">
-                     <div className="form-control">
+                     <div className={`form-control ${focusedFields.name ? 'onFocus' : ''}`}>
                         <i className="fa-solid fa-user gradient-icon"></i>
-                        <Field name="name" type="text" className="form-input" />
+                        <Field 
+                           name="name" 
+                           type="text" 
+                           className="form-input" 
+                           onFocus={(e) => handleFocus(e, values)} 
+                        />
                         <label className="form-label" htmlFor="name">Name</label>
                      </div>
                      <ErrorMessage name="name" render={renderError} />
