@@ -69,7 +69,7 @@ function RegisterForm() {
                         <i className="fa-solid fa-envelope gradient-icon"></i>
                         <Field name="username" type="text" className="form-input" />
                      </div>
-                     <ErrorMessage name="username" render={renderError} />
+                     <ErrorMessage name="username" render={renderError} /> 
                   </div>
 
                   <div className="form-row">
