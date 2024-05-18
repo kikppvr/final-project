@@ -5,7 +5,12 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import "./RegisterForm.scss";
 
 function RegisterForm() {
-   const [focusedFields, setFocusedFields] = useState({});
+   const [hasValue, setHasValue] = useState({
+         name: false,
+         username: false,
+         email: false,
+         password: false,
+   });
 
    const formSchema = Yup.object({
       name: Yup.string().required("Name is required"),
@@ -17,17 +22,17 @@ function RegisterForm() {
       // confirmPassword: Yup.string().required('Confirm Password is required'),
    });
 
-   const handleFocus = (e, values) => {
-      const fieldName = e.target.name;
-      const fieldValue = values[fieldName];
-      if (fieldValue) {
-         console.log(`${fieldName} already has a value: ${fieldValue}`);
-         setFocusedFields((prev) => ({ ...prev, [fieldName]: true }));
-      } else {
-         console.log(`${fieldName} is empty`);
-         setFocusedFields((prev) => ({ ...prev, [fieldName]: false }));
-      }
-   };
+   // const handleFocus = (e, values) => {
+   //    const fieldName = e.target.name;
+   //    const fieldValue = values[fieldName];
+   //    if (fieldValue) {
+   //       console.log(`${fieldName} already has a value: ${fieldValue}`);
+   //       setFocusedFields((prev) => ({ ...prev, [fieldName]: true }));
+   //    } else {
+   //       console.log(`${fieldName} is empty`);
+   //       setFocusedFields((prev) => ({ ...prev, [fieldName]: false }));
+   //    }
+   // };
 
    const renderError = (message) => <p className="errorMessage">{message}</p>;
 
@@ -47,16 +52,22 @@ function RegisterForm() {
                console.log(values);
             }}
          >
-            {({ handleChange, handleBlur, handleSubmit, values, setFieldTouched }) => (
+            {({ handleChange, handleBlur, handleSubmit }) => (
                <Form onSubmit={handleSubmit} className="grid gap-8 grid-cols-1">
                   <div className="form-row">
-                     <div className={`form-control ${focusedFields.name ? 'onFocus' : ''}`}>
+                     <div className={`form-control ${hasValue.name ? 'has-value' : ''}`}>
                         <i className="fa-solid fa-user gradient-icon"></i>
                         <Field 
                            name="name" 
                            type="text" 
-                           className="form-input" 
-                           onFocus={(e) => handleFocus(e, values)} 
+                           className="form-input"
+                           onChange={(e) => {
+                              handleChange(e);
+                              setHasValue({ ...hasValue, name: e.target.value !== '' });
+                           }}
+                           // autoFocus
+                           // onBlur={handleBlur}
+                           // value={values.name}
                         />
                         <label className="form-label" htmlFor="name">Name</label>
                      </div>
@@ -64,28 +75,52 @@ function RegisterForm() {
                   </div>
 
                   <div className="form-row">
-                     <label className="form-label" htmlFor="username">Username</label>
-                     <div className="form-control">
+                     <div className={`form-control ${hasValue.username ? 'has-value' : ''}`}>
                         <i className="fa-solid fa-envelope gradient-icon"></i>
-                        <Field name="username" type="text" className="form-input" />
+                        <Field 
+                           name="username" 
+                           type="text" 
+                           className="form-input"
+                           onChange={(e) => {
+                              handleChange(e);
+                              setHasValue({ ...hasValue, username: e.target.value !== '' });
+                           }}
+                        />
+                        <label className="form-label" htmlFor="username">Username</label>
                      </div>
                      <ErrorMessage name="username" render={renderError} /> 
                   </div>
 
                   <div className="form-row">
-                     <label className="form-label" htmlFor="email">Email</label>
-                     <div className="form-control">
+                     <div className={`form-control ${hasValue.email ? 'has-value' : ''}`}>
                         <i className="fa-solid fa-envelope gradient-icon"></i>
-                        <Field name="email" type="text" className="form-input" />
+                        <Field 
+                           name="email" 
+                           type="text" 
+                           className="form-input" 
+                           onChange={(e) => {
+                              handleChange(e);
+                              setHasValue({ ...hasValue, email: e.target.value !== '' });
+                           }}
+                        />
+                        <label className="form-label" htmlFor="email">Email</label>
                      </div>
                      <ErrorMessage name="email" render={renderError} />
                   </div>
 
                   <div className="form-row">
-                     <label className="form-label" htmlFor="password">Password</label>
-                     <div className="form-control">
+                     <div className={`form-control ${hasValue.password ? 'has-value' : ''}`}>
                         <i className="fa-solid fa-lock gradient-icon"></i>
-                        <Field name="password" type="text" className="form-input" />
+                        <Field 
+                           name="password" 
+                           type="text" 
+                           className="form-input"
+                           onChange={(e) => {
+                              handleChange(e);
+                              setHasValue({ ...hasValue, password: e.target.value !== '' });
+                           }}
+                        />
+                        <label className="form-label" htmlFor="password">Password</label>
                      </div>
                      <ErrorMessage name="password" render={renderError} />
                   </div>

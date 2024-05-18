@@ -2,50 +2,8 @@
     position: relative;
     z-index: 1;
 
-    .form-input:not(:placeholder-shown) + .form-label,
-    .form-input:focus + .form-label {
-        top: -10px;
-        left: 40px;
-        font-size: 12px;
-        color: #fff;
-    }
-
     .form-row {
         position: relative;
-
-
-        &.onFocus{
-            .form-label {
-                top: -15px;
-                left: 0;
-                font-size: 12px;
-                color: rgba(#ffffff, 0.85);
-            }
-        }
-
-        &:focus,
-        &:active {
-            .form-control {
-                //line
-                &:before {
-                    width: 100%;
-                }
-            }
-
-            .form-label {
-                top: -15px;
-                left: 0;
-                font-size: 12px;
-                color: rgba(#ffffff, 0.85);
-            }
-
-            //line
-            .form-input {
-                &:before {
-                    width: 100%;
-                }
-            }
-        }
     }
 
     .form-control {
@@ -54,31 +12,45 @@
         align-items: center;
         border-bottom: 1px solid rgba(255, 255, 255, 0.5);
 
+
         //line
         &:before {
             content: "";
             position: absolute;
-            bottom: 0;
+            bottom: -1px;
             left: 0;
-            background-color: rgba(255, 255, 255, 1);
+            background: linear-gradient(to right, #8634be, #86e0dd);
             width: 0;
             height: 1px;
-            transition: 0.3s all ease-in-out;
+            transition: 0.5s all ease-in-out;
             z-index: 1;
         }
 
         i {
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.8);
+            color: #17a9a6;
         }
 
-        .gradient-icon {
-            display: inline-block;
-            background: #5f2c82;  /* fallback for old browsers */
-            background: -webkit-linear-gradient(280deg, #86e0dd, #8634be);  /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(280deg, #86e0dd, #8634be); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        // .gradient-icon {
+        //     display: inline-block;
+        //     background: #5f2c82;  /* fallback for old browsers */
+        //     background: -webkit-linear-gradient(280deg, #86e0dd, #8634be);  /* Chrome 10-25, Safari 5.1-6 */
+        //     background: linear-gradient(280deg, #86e0dd, #8634be); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        //     -webkit-background-clip: text;
+        //     -webkit-text-fill-color: transparent;
+        // }
+
+        &.has-value {
+            .form-label {
+                top: -15px;
+                left: 0;
+                font-size: 12px;
+                // color: rgba(#ffffff, 0.85);
+            }
+
+            &:before {
+                width: 100%;
+            }
         }
     }
 
@@ -99,8 +71,8 @@
         position: relative;
 
         // remove bg autofill
-        color: rgba(#ffffff, 0.5) !important;
-        -webkit-text-fill-color: rgba(#ffffff, 0.5) !important;
+        color: rgba(#ffffff, 1) !important;
+        -webkit-text-fill-color: rgba(#ffffff, 1) !important;
         -webkit-background-clip: text !important;
         background-clip: text !important;
 
