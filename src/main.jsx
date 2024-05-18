@@ -7,21 +7,26 @@ import HomePage from "./pages/Homepage/HomePage.jsx";
 import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 
-const router = createBrowserRouter([
+const router = createBrowserRouter(
+    [
+        {
+            path: "/",
+            element: <RegisterPage />
+            // element: <HomePage />
+        },
+        {
+            path: "/register",
+            element: <RegisterPage />
+        },
+        {
+            path: "/login",
+            element: <LoginPage />
+        }
+    ], 
     {
-        path: "/",
-        element: <RegisterPage />
-        // element: <HomePage />
-    },
-    {
-        path: "/register",
-        element: <RegisterPage />
-    },
-    {
-        path: "/login",
-        element: <LoginPage />
+        basename: "/final-project"
     }
-]);
+);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
    <React.StrictMode>
