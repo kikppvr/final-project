@@ -8,29 +8,42 @@ import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
 import LoginPage from "./pages/LoginPage/LoginPage.jsx";
 
 const router = createBrowserRouter(
+    // [
+    //     {
+    //         path: "/",
+    //         element: <RegisterPage />
+    //         // element: <HomePage />
+    //     },
+    //     {
+    //         path: "/register",
+    //         element: <RegisterPage />
+    //     },
+    //     {
+    //         path: "/login",
+    //         element: <LoginPage />
+    //     }
+    // ],
+    // {
+    //     basename: "/final-project"
+    // }
     [
         {
             path: "/",
-            element: <RegisterPage />
-            // element: <HomePage />
+            element: <App />,
+            children: [
+                { path: "register", element: <RegisterPage /> },
+                { path: "login", element: <LoginPage /> },
+            ],
         },
-        {
-            path: "/register",
-            element: <RegisterPage />
-        },
-        {
-            path: "/login",
-            element: <LoginPage />
-        }
-    ], 
+    ],
     {
-        basename: "/final-project"
+        basename: "/final-project", // กำหนด basename สำหรับการ deploy บน GitHub Pages
     }
 );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-   <React.StrictMode>
-      {/* <App /> */}
-      <RouterProvider router={router}></RouterProvider>
-   </React.StrictMode>
+    <React.StrictMode>
+        {/* <App /> */}
+        <RouterProvider router={router}></RouterProvider>
+    </React.StrictMode>
 );
