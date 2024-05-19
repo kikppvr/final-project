@@ -1,49 +1,31 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
-import "./assets/styles/index.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./pages/Homepage/HomePage.jsx";
-import RegisterPage from "./pages/RegisterPage/RegisterPage.jsx";
-import LoginPage from "./pages/LoginPage/LoginPage.jsx";
+// import { createBrowserRouter, RouterProvider } from "react-router-dom";
+// import Home from "./pages/Home/Home.jsx";
+// import Register from "./pages/Register/Register.jsx";
+// import Login from "./pages/Login/Login.jsx";
 
-const router = createBrowserRouter(
-    [
-        {
-            path: "/",
-            element: <RegisterPage />
-            // element: <HomePage />
-        },
-        {
-            path: "/register",
-            element: <RegisterPage />
-        },
-        {
-            path: "/login",
-            element: <LoginPage />
-        }
-    ],
-    // {
-    //     basename: "/final-project"
-    // }
-    // [
-    //     {
-    //         path: "/",
-    //         element: <App />,
-    //         children: [
-    //             { path: "register", element: <RegisterPage /> },
-    //             { path: "login", element: <LoginPage /> },
-    //         ],
-    //     },
-    // ],
-    // {
-    //     basename: "/final-project", // กำหนด basename สำหรับการ deploy บน GitHub Pages
-    // }
-);
+// const router = createBrowserRouter(
+//     [
+//         {
+//             path: "/",
+//             element: <Home />
+//         },
+//         {
+//             path: "/register",
+//             element: <Register />
+//         },
+//         {
+//             path: "/login",
+//             element: <Login />
+//         }
+//     ],
+// );
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        {/* <App /> */}
-        <RouterProvider router={router}></RouterProvider>
+        <App />
+        {/* <RouterProvider router={router}></RouterProvider> */}
     </React.StrictMode>
 );

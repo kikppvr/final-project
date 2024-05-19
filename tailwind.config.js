@@ -4,7 +4,7 @@ export default {
    theme: {
       extend: {
          fontFamily: {
-            sans: ['Poppins', 'sans-serif'],
+            sans: ['Open Sans', 'sans-serif'],
          },
          fontSize: {
             10: "10px",
@@ -30,6 +30,12 @@ export default {
             '2xl': '1440px',  // Larger devices
             '3xl': '1920px',  // Largest devices
          },
+         colors: {
+            'primary': '#91C788',
+            'secondary': '#FF8473',
+            'brown': '#573926',
+
+         }
       },
    },
    plugins: [],

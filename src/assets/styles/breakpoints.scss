@@ -23,16 +23,17 @@ $min-width-desktop:             $max-width-desktop + 1;
     @media (max-width: $max-width-tablet-small) { @content; }
 }
 
-@mixin min-tablet {
-    @media (min-width: $min-width-tablet) { @content; }
-}
+// @mixin min-tablet {
+//     @media (min-width: $min-width-tablet) { @content; }
+// }
 
 @mixin max-tablet {
     @media (max-width: $max-width-tablet) { @content; }
 }
 
 @mixin tablet {
-    @media (min-width: $min-width-tablet) and (max-width: $max-width-desktop) { @content; }
+    @media (max-width: $max-width-desktop) { @content; }
+    // @media (min-width: $min-width-tablet) and (max-width: $max-width-desktop) { @content; }
 }
 
 @mixin min-desktop {
@@ -40,15 +41,18 @@ $min-width-desktop:             $max-width-desktop + 1;
 }
 
 @mixin desktop {
-    @media (min-width: $min-width-desktop) and (max-width: $max-width-desktop-large) { @content; }
+    @media (max-width: $max-width-desktop-large) { @content; }
+    // @media (min-width: $min-width-desktop) and (max-width: $max-width-desktop-large) { @content; }
 }
 
 @mixin desktop-large {
-    @media (min-width: $max-width-desktop-large) and (max-width: $max-width-desktop-extra-large) { @content; }
+    @media (max-width: $max-width-desktop-extra-large) { @content; }
+    // @media (min-width: $max-width-desktop-large) and (max-width: $max-width-desktop-extra-large) { @content; }
 }
 
 @mixin desktop-extra-large {
-    @media (min-width: $max-width-desktop-extra-large) and (max-width: $max-width-desktop-2xl) { @content; }
+    @media (max-width: $max-width-desktop-2xl) { @content; }
+    // @media (min-width: $max-width-desktop-extra-large) and (max-width: $max-width-desktop-2xl) { @content; }
 }
 
 @mixin desktop-2xl {

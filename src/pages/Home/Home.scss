@@ -1,0 +1,220 @@
+@import "../../assets/styles/breakpoints.scss";
+
+.home-main {
+    // background-color: #ffffff;
+    overflow: hidden;
+    // min-height: 100vh;
+}
+
+.home-banner {
+    background-color: #91c788;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    position: relative;
+    min-height: calc(100vh - 80px);
+
+    @include max-tablet() {
+        min-height: calc(70vh - 80px);
+    }
+
+    @include tablet-small() {
+        flex-direction: column;
+        padding-top: 2rem;
+    }
+
+    @include mini-mobile() {
+        min-height: calc(70vh - 80px);
+    }
+
+    .home-banner__body {
+        width: 50%;
+        padding: 0 10rem 0 3rem;
+
+        @include desktop() {
+            padding: 0 3rem;
+        }
+
+        @include tablet-small() {
+            width: 100%;
+            padding: 0 1rem;
+        }
+    }
+
+    .home-banner__right {
+        position: absolute;
+        right: 0;
+        top: 1rem;
+        bottom: 0;
+        width: 50%;
+        height: auto;
+        z-index: 1;
+
+        @include desktop-extra-large() {
+            width: 60%;
+        }
+
+        @include tablet-small() {
+            position: relative;
+            margin-right: -8vw;
+            width: 400px;
+            height: 400px;
+        }
+
+        @include mobile() {
+            width: 350px;
+            height: 350px;
+        }
+    }
+
+    .home-banner__image {
+        background-position: center right;
+        background-repeat: no-repeat;
+        background-size: contain;
+        width: 100%;
+        height: 100%;
+    }
+
+    .home-banner__title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+
+        @include desktop() {
+            font-size: 3rem;
+        }
+
+        @include max-tablet() {
+            font-size: 2.5rem;
+        }
+    }
+
+    .home-banner__text {
+        font-size: 1.5rem;
+
+        @include desktop() {
+            font-size: 1.2rem;
+        }
+
+        @include max-tablet() {
+            font-size: 1rem;
+        }
+    }
+}
+
+// .home-aboutus {
+//     text-align: center;
+//     padding: 3rem 0;
+// }
+
+.home-intro {
+    padding-top: 12rem;
+    padding-bottom: 5rem;
+    position: relative;
+
+    @include desktop() {
+        padding-top: 8rem;
+    }
+    @include max-tablet() {
+        padding-top: 6rem;
+    }
+
+    &:after {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url("../../assets/images/home/wave.svg");
+        background-position: top;
+        background-repeat: no-repeat;
+        background-size: contain;
+        z-index: -1;
+        // background-size: cover;
+    }
+
+    .home-intro__header {
+        position: relative;
+        text-align: center;
+        margin-bottom: 3rem;
+
+        @include max-tablet() {
+            margin-bottom: 2rem;
+        }
+    }
+
+    .home-intro__title {
+        font-size: 3rem;
+        font-weight: 600;
+        color: #000000;
+
+        @include desktop() {
+            font-size: 2.5rem;
+        }
+        @include max-tablet() {
+            font-size: 2rem;
+        }
+    }
+
+    .home-intro__backdrop {
+        font-family: "Hurricane", cursive;
+        font-size: 3.5rem;
+        text-transform: capitalize;
+        margin-bottom: -2.5rem;
+        color: rgb(62 58 58 / 10%);
+    }
+
+    .home-intro__body {
+        display: flex;
+        justify-content: center;
+        // align-items: center;
+        @include tablet-small() {
+            flex-direction: column;
+        }
+    }
+
+    .home-intro__left {
+        width: 50%;
+        padding-top: 4rem;
+        padding-left: 4rem;
+
+        @include max-tablet() {
+            padding-top: 2rem;
+            padding-left: 2rem;
+        }
+        @include tablet-small() {
+            padding-top: 0;
+            padding-left: 0;
+            width: 100%;
+        }
+
+        li {
+            position: relative;
+            display: flex;
+            align-items: center;
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+
+            &::before {
+                content: "";
+                background-image: url("/src/assets/icons/ic-check.svg");
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: contain;
+                display: flex;
+                width: 20px;
+                height: 20px;
+                margin-right: 10px;
+            }
+        }
+    }
+
+    .home-intro__right {
+        width: 50%;
+
+        @include tablet-small() {
+            width: 100%;
+        }
+    }
+}

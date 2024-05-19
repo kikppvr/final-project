@@ -1,0 +1,61 @@
+@import "../../assets/styles/breakpoints.scss";
+
+.navbar {
+    // display: flex;
+    // align-items: center;
+    // justify-content: space-between;
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    width: 100%;
+    height: 80px;
+    background-color: #91c788;
+
+    .navbar-menu {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        // padding: 0 30px;
+        width: 100%;
+        height: 100%;
+
+        @include max-tablet() {
+            display: none;
+        }
+    }
+
+    .navbar-center {
+        display: flex;
+
+        .navbar-item {
+            padding: 0 20px;
+            color: #ffffff;
+        }
+    }
+    .navbar-right {
+        display: flex;
+
+        .navbar-item {
+            padding: 0 10px;
+            color: #ffffff;
+        }
+    }
+
+    .hamburger {
+        display: none;
+
+        @include max-tablet() {
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+
+            .bar {
+                width: 25px;
+                height: 2px;
+                background-color: white;
+                margin: 4px 0;
+                transition: 0.3s;
+            }
+        }
+    }
+}
