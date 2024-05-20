@@ -17,7 +17,7 @@ function Home() {
                     <div
                         className="home-banner__image"
                         style={{
-                            backgroundImage: `url('src/assets/images/home/home-1.png')`,
+                            backgroundImage: `url('@/assets/images/home/home-1.png')`,
                         }}
                     ></div>
                 </div>
@@ -76,8 +76,9 @@ function Home() {
 
                         <div className="home-intro__right">
                             <div className="grid grid-cols-2 gap-4 items-end mb-4">
-                                <img src="src/assets/images/home/intro-1.png" alt="" />
-                                <img src="src/assets/images/home/intro-2.png" alt="" />
+                                {/* <img src="../assets/images/home/intro-1.png" alt="" /> */}
+                                <img src="@/assets/images/home/intro-1.png" alt="" />
+                                <img src="@/assets/images/home/intro-2.png" alt="" />
                             </div>
                             <img src="src/assets/images/home/intro-3.png" alt="" />
                         </div>

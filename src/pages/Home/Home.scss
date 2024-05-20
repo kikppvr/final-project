@@ -1,9 +1,7 @@
 @import "../../assets/styles/breakpoints.scss";
 
 .home-main {
-    // background-color: #ffffff;
     overflow: hidden;
-    // min-height: 100vh;
 }
 
 .home-banner {
@@ -12,10 +10,10 @@
     display: flex;
     align-items: center;
     position: relative;
-    min-height: calc(100vh - 80px);
+    min-height: calc(100vh + 80px);
 
     @include max-tablet() {
-        min-height: calc(70vh - 80px);
+        min-height: calc(70vh + 80px);
     }
 
     @include tablet-small() {
@@ -24,15 +22,15 @@
     }
 
     @include mini-mobile() {
-        min-height: calc(70vh - 80px);
+        min-height: calc(70vh + 80px);
     }
 
     .home-banner__body {
         width: 50%;
-        padding: 0 10rem 0 3rem;
+        padding: 0 5rem 8rem 8rem;
 
         @include desktop() {
-            padding: 0 3rem;
+            padding: 0 3rem 5rem 3rem;
         }
 
         @include tablet-small() {
@@ -51,10 +49,12 @@
         z-index: 1;
 
         @include desktop-extra-large() {
-            width: 60%;
+            top: 1.5rem;
+            width: 55%;
         }
 
         @include tablet-small() {
+            top: 1rem;
             position: relative;
             margin-right: -8vw;
             width: 400px;
@@ -118,6 +118,31 @@
     @include max-tablet() {
         padding-top: 6rem;
     }
+    @include tablet-small() {
+        padding-top: 4rem;
+        padding-bottom: 3rem;
+    }
+
+    // strawberry
+    &::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 25%;
+        height: 100%;
+        background-image: url("../../assets/images/home/strawberry.png");
+        background-position: bottom left;
+        background-repeat: no-repeat;
+        background-size: contain;
+        z-index: 0;
+
+        @include tablet() {
+            width: 23%;
+        }
+        @include tablet-small() {
+            width: 40%;
+        }
+    }
 
     &:after {
         content: "";
@@ -131,7 +156,8 @@
         background-repeat: no-repeat;
         background-size: contain;
         z-index: -1;
-        // background-size: cover;
+        background-color: #ffffff;
+
     }
 
     .home-intro__header {
@@ -168,20 +194,26 @@
     .home-intro__body {
         display: flex;
         justify-content: center;
-        // align-items: center;
+        position: relative;
+        z-index: 2;
+
         @include tablet-small() {
             flex-direction: column;
         }
     }
 
     .home-intro__left {
-        width: 50%;
+        width: 40%;
         padding-top: 4rem;
         padding-left: 4rem;
 
+        @include tablet() {
+            width: 50%;
+        }
+
         @include max-tablet() {
             padding-top: 2rem;
-            padding-left: 2rem;
+            // padding-left: 2rem;
         }
         @include tablet-small() {
             padding-top: 0;
@@ -195,6 +227,11 @@
             align-items: center;
             font-size: 1.2rem;
             margin-bottom: 1.5rem;
+
+            @include max-tablet() {
+                font-size: 0.9rem;
+                margin-bottom: 1.2rem;
+            }
 
             &::before {
                 content: "";
@@ -211,10 +248,15 @@
     }
 
     .home-intro__right {
-        width: 50%;
+        width: 45%;
+
+        @include max-tablet() {
+            width: 50%;
+        }
 
         @include tablet-small() {
             width: 100%;
+            margin-top: -1rem;
         }
     }
 }

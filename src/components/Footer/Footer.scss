@@ -1,0 +1,98 @@
+@import "../../assets/styles/breakpoints.scss";
+
+.footer {
+    background: #f8f8f8;
+}
+
+.footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 2rem 0 1rem 0;
+}
+
+.footer-section {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+
+    @include tablet-small() {
+        margin: 0 0 20px 0;
+    }
+
+    &:first-child {
+        @include max-tablet() {
+            min-width: 100%;
+            margin-bottom: 2rem;
+        }
+
+        @include tablet-small() {
+            min-width: 100%;
+            width: 100%;
+        }
+    }
+
+    &:last-child {
+        @include tablet-small() {
+            margin-bottom: 0;
+        }
+    }
+}
+
+.footer-section h3 {
+    color: #4d0a00;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.footer-section p,
+.footer-section ul {
+    font-size: 14px;
+    font-weight: 400;
+    color: #946547;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section ul li {
+    margin: 8px 0;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #946547;
+    transition: 0.3s all ease-in-out;
+
+    &:hover {
+        color: #ff8473;
+    }
+}
+
+.footer-section .social-links {
+    margin-top: 1rem;
+}
+
+.footer-section .social-links a {
+    margin-right: 20px;
+}
+
+.footer-section .social-links a i {
+    font-size: 1.5rem;
+    color: #411812b8;
+    transition: 0.3s all ease-in-out;
+
+    &:hover {
+        color: #ff8473;
+    }
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 1rem 0;
+    border-top: 1px solid #e0e0e0;
+    font-size: 14px;
+    color: #4d0a00;
+}
