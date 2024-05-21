@@ -17,7 +17,7 @@ function Home() {
                     <div
                         className="home-banner__image"
                         style={{
-                            backgroundImage: `url('../../assets/images/home/home-1.png')`,
+                            backgroundImage: `url('../assets/images/home/home-1.png')`,
                         }}
                     ></div>
                 </div>
