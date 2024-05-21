@@ -15,7 +15,7 @@ const Navbar = () => {
             <div className="navbar-mobile flex justify-between w-full">
                 <div>
                     <a href="/" className="flex items-center">
-                        <img src="/src/assets/icons/logo.svg" alt="" className="logo"/>
+                        <img src="assets/icons/logo.svg" alt="" className="logo"/>
                         <span className="brand-title">Healthy Me</span>
                     </a>
                 </div>
@@ -30,7 +30,7 @@ const Navbar = () => {
             <div className={`navbar-menu ${isOpen ? 'open' : ''}`}>
                 <div className="navbar-left">
                     <a href="/" className="flex items-center">
-                        <img src="/src/assets/icons/logo.svg" alt="" className="logo"/>
+                        <img src="assets/icons/logo.svg" alt="" className="logo"/>
                         <span className="brand-title">Healthy Me</span>
                     </a>
                 </div>
