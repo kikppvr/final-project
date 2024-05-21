@@ -14,16 +14,18 @@ const Navbar = () => {
         <nav className={`navbar ${location.pathname == '/' ? 'theme-transparent' : ''}`}>
              {/* navbar desktop*/}
             <div className="navbar-mobile">
-                <a href="/" className="navbar-brand">
-                    <img src="assets/icons/logo.svg" alt="brand"/>
-                    <span className="navbar-brand-title">Healthy Me</span>
-                </a>
-                <div className="hamburger" onClick={toggleMenu}>
-                    <span className="bar"></span>
-                    <span className="bar"></span>
-                    <span className="bar"></span>
+                <div className="flex justify-between items-center w-full">
+                    <a href="/" className="navbar-brand">
+                        <img src="assets/icons/logo.svg" alt="brand"/>
+                        <span className="navbar-brand-title">Healthy Me</span>
+                    </a>
+                    <div className="hamburger" onClick={toggleMenu}>
+                        <span className="bar"></span>
+                        <span className="bar"></span>
+                        <span className="bar"></span>
+                    </div>
                 </div>
-
+        
                 <div className={`navbar-menu ${isOpen ? 'open' : ''}`}>
                     <div className="navbar-list">
                         <div className="navbar-item">
