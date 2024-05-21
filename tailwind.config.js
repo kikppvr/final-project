@@ -31,9 +31,7 @@ export default {
             '3xl': '1920px',  // Largest devices
          },
          colors: {
-            'primary': '#91C788',
-            'secondary': '#FF8473',
-            'brown': '#573926',
+            'a-green-91C788': '#91C788',
 
          }
       },

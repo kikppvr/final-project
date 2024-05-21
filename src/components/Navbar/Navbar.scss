@@ -16,68 +16,97 @@
         padding: 15px;
     }
 
-    .navbar-menu {
+    .navbar-brand {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        height: 100%;
 
-        @include max-tablet() {
-            display: none;
+        img {
+            width: 25px;
+            height: 25px;
         }
     }
 
-    .navbar-left {
-        display: flex;
-        flex-direction: row;
-    }
-
-    .logo {
-        width: 25px;
-        height: 25px;
-    }
-
-    .brand-title {
+    .navbar-brand-title {
         margin-left: 5px;
         font-weight: 700;
         font-size: 1.2rem;
         color: #161616;
     }
 
-    .navbar-center {
+    // theme
+    &.theme-transparent {
+        background-color: transparent;
+
+        .navbar-item {
+            color: #ffffff;
+
+            // line bottom
+            &:after {
+                background-color: #53a06e;
+            }
+
+            &:hover {
+                color: #ffffff;
+
+                // line bottom
+                &:after {
+                    width: 100%;
+                }
+            }
+        }
+
+        .navbar-link-register {
+            border: 1px solid #ffffff;
+        }
+
+        .navbar-link-login {
+            transition: 0.3s all ease-in-out;
+            
+            &:hover {
+                color: #53a06e;
+            }
+        }
+    }
+}
+
+.navbar-desktop {
+    display: flex;
+    width: 100%;
+
+    @include max-tablet() {
+        display: none;
+    }
+
+    .navbar-menu {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .navbar-left,
+    .navbar-center,
+    .navbar-right {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar-center {
         flex: 1;
+        justify-content: center;
 
         .navbar-item {
             padding: 0 5px;
             margin: 0 20px;
         }
     }
-    .navbar-right {
-        display: flex;
-        justify-content: end;
 
+    .navbar-right {
         .navbar-item {
             margin: 0 10px;
 
             // line bottom
             &:after {
                 display: none;
-            }
-        }
-
-        .navbar-item__register {
-            border: 1px solid #4d0a00;
-            padding: 6px 12px;
-            border-radius: 5px;
-            transition: 0.3s all ease-in-out;
-
-            &:hover {
-                background-color: #53a06e;
-                border-color: #53a06e;
-                color: #ffffff;
             }
         }
     }
@@ -112,6 +141,27 @@
         }
     }
 
+    .navbar-link-register {
+        border: 1px solid #4d0a00;
+        padding: 6px 12px;
+        border-radius: 5px;
+        transition: 0.3s all ease-in-out;
+
+        &:hover {
+            background-color: #53a06e;
+            border-color: #53a06e;
+            color: #ffffff;
+        }
+    }
+}
+
+.navbar-mobile {
+    display: none;
+
+    @include max-tablet() {
+        display: flex;
+    }
+
     .hamburger {
         display: none;
 
@@ -126,58 +176,6 @@
                 background-color: #4d0a00;
                 margin: 4px 0;
                 transition: 0.3s;
-            }
-        }
-    }
-
-    .navbar-mobile {
-        display: none;
-
-        @include max-tablet() {
-            display: flex;
-        }
-    }
-
-    &.is-homepage {
-        background-color: #91c788;
-
-        .navbar-item {
-            color: #ffffff;
-
-            &:hover {
-                // color: #53a06e;
-    
-                // line bottom
-                &:after {
-                    width: 100%;
-                    // background-color: #53a06e;
-                }
-            }
-        }
-
-        .navbar-item__register {
-            border: 1px solid #ffffff;
-            padding: 6px 12px;
-            border-radius: 5px;
-            transition: 0.3s all ease-in-out;
-
-            &:hover {
-                background-color: #53a06e;
-                border-color: #53a06e;
-            }
-        }
-
-        .navbar-item__login {
-            transition: 0.3s all ease-in-out;
-
-            &:hover {
-                color: #4d0a00;
-            }
-        }
-
-        .hamburger {
-            .bar {
-                background-color: white;
             }
         }
     }

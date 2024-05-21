@@ -8,7 +8,8 @@ import { apiBaseUrl } from "../../config";
 import "./RegisterForm.scss";
 
 function RegisterForm() {
-    const [inputValues, setInputValues] = useState({});
+    const [showPassword, setShowPassword] = useState(false)
+    const [showConfirmPassword, setshowConfirmPassword] = useState(false)
     const apiRegister = `${apiBaseUrl}/register`
 
     const initialValues = {
@@ -28,16 +29,26 @@ function RegisterForm() {
     });
 
     const formSchema = Yup.object({
-        name: Yup.string().required("Name is required"),
-        username: Yup.string().required("Username is required"),
-        email: Yup.string()
-            .email("Invalid email format")
-            .required("Email is required"),
-        password: Yup.string().required("Password is required"),
-        confirmPassword: Yup.string()
-            .oneOf([Yup.ref("password"), null], "Passwords must match")
-            .required("Confirm Password is required"),
+        name: Yup.string().min(2, 'Name is too short!').max(50, 'Name is too Long!').required("Name is required"),
+        username: Yup.string().min(2, 'Username is too short!').max(50, 'Username is too Long!').required("Username is required"),
+        email: Yup.string().email("Invalid email format").required("Email is required"),
+        password: Yup.string()
+                .min(8, "Password is too short!")
+                .matches(/[a-z]/, "Password must contain at least one lowercase letter")
+                .matches(/[A-Z]/, "Password must contain at least one uppercase letter")
+                .matches(/[0-9]/, "Password must contain at least one number")
+                .matches(/[@$!%*?&#]/, "Password must contain at least one special character")
+                .required("Password is required"),
+        // password: Yup.string().min(8, 'Password is too short!').required("Password is required"),
+        confirmPassword: Yup.string().oneOf([Yup.ref("password"), null], "Passwords must match")
+                        .required("Confirm Password is required"),
     });
+
+
+    const handleChangeValidation = (e, handleChange, field) => {
+        handleChange(e),
+        setHasValue({...hasValue, [field]: e.target.value !== ""});
+    }
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
@@ -60,31 +71,23 @@ function RegisterForm() {
 
     const renderError = (message) => <p className="errorMessage">{message}</p>;
 
-    // console.log("formSchema", formSchema);
-
     return (
         <div className="form-register">
             <Formik
                 initialValues={initialValues}
                 validationSchema={formSchema}
                 onSubmit={handleSubmit}>
-                {({ handleChange, handleBlur }) => (
+                {({ handleChange }) => (
                     <Form className="grid gap-8 grid-cols-1">
                         <div className="form-row">
                             <div className={`form-control ${hasValue.name ? "has-value" : ""}`}>
-                                <i className="fa-solid fa-user gradient-icon"></i>
+                                <i className="fa-solid fa-id-badge"></i>
                                 <label className="form-label" htmlFor="name">Name</label>
                                 <Field
                                     name="name"
                                     type="text"
                                     className="form-input"
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                        setHasValue({
-                                            ...hasValue,
-                                            name: e.target.value !== "",
-                                        });
-                                    }}
+                                    onChange={(e) => handleChangeValidation(e, handleChange, "name")}
                                 />
                             </div>
                             <ErrorMessage name="name" render={renderError} />
@@ -92,25 +95,16 @@ function RegisterForm() {
 
                         <div className="form-row">
                             <div className={`form-control ${hasValue.username ? "has-value" : "" }`} >
-                                <i className="fa-solid fa-envelope gradient-icon"></i>
+                                <i className="fa-solid fa-user gradient-icon"></i>
                                 <label className="form-label" htmlFor="username">Username</label>
                                 <Field
                                     name="username"
                                     type="text"
                                     className="form-input"
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                        setHasValue({
-                                            ...hasValue,
-                                            username: e.target.value !== "",
-                                        });
-                                    }}
+                                    onChange={(e) => handleChangeValidation(e, handleChange, "username")}
                                 />
                             </div>
-                            <ErrorMessage
-                                name="username"
-                                render={renderError}
-                            />
+                            <ErrorMessage name="username" render={renderError} />
                         </div>
 
                         <div className="form-row">
@@ -122,13 +116,7 @@ function RegisterForm() {
                                     name="email"
                                     type="text"
                                     className="form-input"
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                        setHasValue({
-                                            ...hasValue,
-                                            email: e.target.value !== "",
-                                        });
-                                    }}
+                                    onChange={(e) => handleChangeValidation(e, handleChange, "email")}
                                 />
                             </div>
                             <ErrorMessage name="email" render={renderError} />
@@ -140,45 +128,34 @@ function RegisterForm() {
                                 <label className="form-label" htmlFor="password">Password</label>
                                 <Field
                                     name="password"
-                                    type="password"
+                                    type={showPassword ? "text" : "password"} 
                                     className="form-input"
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                        setHasValue({
-                                            ...hasValue,
-                                            password: e.target.value !== "",
-                                        });
-                                    }}
+                                    onChange={(e) => handleChangeValidation(e, handleChange, "password")}
                                 />
+                                <span className={`text-10 cursor-pointer text-a-green-91C788 ${hasValue.password ? "block" : "hidden"}`}
+                                    onClick={() => setShowPassword(!showPassword)}>
+                                    {showPassword ? "HIDE" : "SHOW"}
+                                </span>
                             </div>
-                            <ErrorMessage
-                                name="password"
-                                render={renderError}
-                            />
+                            <ErrorMessage name="password" render={renderError} />
                         </div>
 
                         <div className="form-row">
                             <div className={`form-control ${hasValue.confirmPassword ? "has-value" : "" }`}>
-                                <i className="fa-solid fa-lock gradient-icon"></i>
+                                <i className="fa-solid fa-unlock-keyhole"></i>
                                 <label className="form-label" htmlFor="confirmPassword">Confirm Password</label>
                                 <Field
                                     name="confirmPassword"
                                     type="password"
                                     className="form-input"
-                                    onChange={(e) => {
-                                        handleChange(e);
-                                        setHasValue({
-                                            ...hasValue,
-                                            confirmPassword:
-                                                e.target.value !== "",
-                                        });
-                                    }}
+                                    onChange={(e) => handleChangeValidation(e, handleChange, "confirmPassword")}
                                 />
+                                <span className={`text-10 cursor-pointer text-a-green-91C788 ${hasValue.confirmPassword ? "block" : "hidden"}`}
+                                    onClick={() => setshowConfirmPassword(!showConfirmPassword)}>
+                                    {showConfirmPassword ? "HIDE" : "SHOW"}
+                                </span>
                             </div>
-                            <ErrorMessage
-                                name="confirmPassword"
-                                render={renderError}
-                            />
+                            <ErrorMessage name="confirmPassword" render={renderError} />
                         </div>
 
                         <button type="submit" className="btn-submit">

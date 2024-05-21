@@ -1,8 +1,10 @@
+/* bootstrap */
+/* @import "bootstrap/dist/css/bootstrap.min.css";
+@import 'bootstrap/dist/js/bootstrap.bundle.min'; */
+/* tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* @import './breakpoints.scss'; */
 
 :root {
     font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -39,33 +41,15 @@ section {
     }
 }
 
-/* h1 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-} */
-
-/* p {
-    font-size: 1rem;
-    margin-bottom: 1rem;
-} */
-
-nav {
-    background-color: #333;
-    padding: 1rem;
-}
-
-nav a {
-    color: white;
-    margin: 0 1rem;
+a:hover {
     text-decoration: none;
 }
 
-nav a:hover {
-    text-decoration: underline;
-}
-
-main {
-    /* padding: 2rem 0; */
+/* bootstap */
+.form-control:focus,
+.form-control:focus-within{
+    /* border: 0; */
+    box-shadow: none;
 }
 
 /* Extra small devices (phones, less than 576px) */
