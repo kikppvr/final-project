@@ -19,7 +19,9 @@
 }
 
 body {
-    font-family: "Open Sans", sans-serif;
+    /* font-family: "Open Sans", sans-serif; */
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
     min-height: 100vh;
 }
 
@@ -37,7 +39,7 @@ img {
 
 section {
     &:first-child {
-        padding-top: 100px;
+        padding-top: 130px;
     }
 }
 

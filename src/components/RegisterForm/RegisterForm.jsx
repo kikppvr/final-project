@@ -1,15 +1,24 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState }from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { registerUser } from '../../redux/actions';
+// form
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
+// modal
+import SuccessModal from "../Modal/SuccessModal/SuccessModal";
+//service
 import axios from "axios";
 import { apiBaseUrl } from "../../config";
-
+//scss
 import "./RegisterForm.scss";
 
 function RegisterForm() {
     const [showPassword, setShowPassword] = useState(false)
-    const [showConfirmPassword, setshowConfirmPassword] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+    const [showSuccessModal, setShowSuccessModal] = useState(false)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
     const apiRegister = `${apiBaseUrl}/register`
 
     const initialValues = {
@@ -59,11 +68,14 @@ function RegisterForm() {
                 password: values.password,
             });
             console.log('response ', response.data)
-            alert("Registration successful!");
-            resetForm()
+            setShowSuccessModal(true);
+            dispatch(registerUser(values.username, values.name, values.email));
+            resetForm();
+            setTimeout(() => {
+                navigate("/login");
+            }, 3000);
         } catch (error) {
             console.error("Error registering user:", error);
-            alert("Failed to register user. Please try again.");
         } finally {
             setSubmitting(false);
         }
@@ -101,6 +113,7 @@ function RegisterForm() {
                                     name="username"
                                     type="text"
                                     className="form-input"
+                                    autoComplete="username"
                                     onChange={(e) => handleChangeValidation(e, handleChange, "username")}
                                 />
                             </div>
@@ -116,6 +129,7 @@ function RegisterForm() {
                                     name="email"
                                     type="text"
                                     className="form-input"
+                                    autoComplete="email"
                                     onChange={(e) => handleChangeValidation(e, handleChange, "email")}
                                 />
                             </div>
@@ -130,6 +144,7 @@ function RegisterForm() {
                                     name="password"
                                     type={showPassword ? "text" : "password"} 
                                     className="form-input"
+                                    autoComplete="new-password"
                                     onChange={(e) => handleChangeValidation(e, handleChange, "password")}
                                 />
                                 <span className={`text-10 cursor-pointer text-a-green-91C788 ${hasValue.password ? "block" : "hidden"}`}
@@ -146,12 +161,13 @@ function RegisterForm() {
                                 <label className="form-label" htmlFor="confirmPassword">Confirm Password</label>
                                 <Field
                                     name="confirmPassword"
-                                    type="password"
+                                    type={showConfirmPassword ? "text" : "password"} 
                                     className="form-input"
+                                    autoComplete="new-password"
                                     onChange={(e) => handleChangeValidation(e, handleChange, "confirmPassword")}
                                 />
                                 <span className={`text-10 cursor-pointer text-a-green-91C788 ${hasValue.confirmPassword ? "block" : "hidden"}`}
-                                    onClick={() => setshowConfirmPassword(!showConfirmPassword)}>
+                                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
                                     {showConfirmPassword ? "HIDE" : "SHOW"}
                                 </span>
                             </div>
@@ -159,11 +175,13 @@ function RegisterForm() {
                         </div>
 
                         <button type="submit" className="btn-submit">
-                            Register
+                            Submit
                         </button>
                     </Form>
                 )}
             </Formik>
+
+            {showSuccessModal && <SuccessModal onClose={() => setShowSuccessModal(false)} />}
         </div>
     );
 }
