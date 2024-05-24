@@ -7,8 +7,8 @@ function Login() {
         <main className="login-main">
             <section className="login">
                 <div className="container">
-                    <div className="login__card">
-                        <h1 className="login__title">Sign In</h1>
+                    <div className="login__card shadow">
+                        <h1 className="login__title">Login</h1>
                         <LoginForm />
                     </div>
                 </div>

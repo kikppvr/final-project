@@ -1,15 +1,11 @@
 import React, { useState }from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from '../../redux/actions';
-// form
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
-// modal
 import SuccessModal from "../Modal/SuccessModal/SuccessModal";
-//service
-import axios from "axios";
-import { apiBaseUrl } from "../../config";
+// import { apiBaseUrl } from "../../config";
 //scss
 import "./RegisterForm.scss";
 
@@ -19,7 +15,8 @@ function RegisterForm() {
     const [showSuccessModal, setShowSuccessModal] = useState(false)
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const apiRegister = `${apiBaseUrl}/register`
+    const { loading } = useSelector((state) => state.userReducer)
+    // const apiRegister = `${apiBaseUrl}/register`
 
     const initialValues = {
         name: "",
@@ -60,26 +57,20 @@ function RegisterForm() {
     }
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-        try {
-            let response = await axios.post(apiRegister, {
-                name: values.name,
-                username: values.username,
-                email: values.email,
-                password: values.password,
-            });
-            console.log('response ', response.data)
-            setShowSuccessModal(true);
-            dispatch(registerUser(values.username, values.name, values.email));
-            resetForm();
-            setTimeout(() => {
-                navigate("/login");
-            }, 3000);
-        } catch (error) {
-            console.error("Error registering user:", error);
-        } finally {
-            setSubmitting(false);
-        }
+       try {
+            await dispatch(registerUser(values))
+            navigate('/login')
+       } catch (error) {
+            console.error(error);
+       }
+
+       setSubmitting(false);
     };
+
+    const handleCloseModal = () => {
+        setShowSuccessModal(false);
+        navigate("/login");
+    }
 
     const renderError = (message) => <p className="errorMessage">{message}</p>;
 
@@ -89,8 +80,8 @@ function RegisterForm() {
                 initialValues={initialValues}
                 validationSchema={formSchema}
                 onSubmit={handleSubmit}>
-                {({ handleChange }) => (
-                    <Form className="grid gap-8 grid-cols-1">
+                {({ handleChange, isSubmitting }) => (
+                    <Form className="">
                         <div className="form-row">
                             <div className={`form-control ${hasValue.name ? "has-value" : ""}`}>
                                 <i className="fa-solid fa-id-badge"></i>
@@ -174,14 +165,14 @@ function RegisterForm() {
                             <ErrorMessage name="confirmPassword" render={renderError} />
                         </div>
 
-                        <button type="submit" className="btn-submit">
+                        <button type="submit" className="btn-submit"  disabled={isSubmitting || loading}>
                             Submit
                         </button>
                     </Form>
                 )}
             </Formik>
 
-            {showSuccessModal && <SuccessModal onClose={() => setShowSuccessModal(false)} />}
+            {showSuccessModal && <SuccessModal onClose={handleCloseModal} />}
         </div>
     );
 }

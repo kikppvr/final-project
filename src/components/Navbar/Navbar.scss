@@ -10,6 +10,7 @@
     top: 0;
     left: 0;
     z-index: 10;
+    overflow: hidden;
     background-color: #f4f0e3;
 
     @include tablet-small() {
@@ -35,18 +36,18 @@
 
     // theme
     &.theme-transparent {
-        background-color: transparent;
+        background-color: transparent !important;
 
         .navbar-item {
-            color: #ffffff;
-
             // line bottom
             &:after {
                 background-color: #53a06e;
             }
 
             &:hover {
-                color: #ffffff;
+                .navbar-link {
+                    color: #ffffff;
+                }
 
                 // line bottom
                 &:after {
@@ -55,11 +56,15 @@
             }
         }
 
-        .navbar-link-register {
+        .navbar-link {
+            color: #ffffff;
+        }
+
+        .navbar-link__register {
             border: 1px solid #ffffff;
         }
 
-        .navbar-link-login {
+        .navbar-link__login {
             transition: 0.3s all ease-in-out;
 
             &:hover {
@@ -112,9 +117,6 @@
     }
 
     .navbar-item {
-        font-size: 1rem;
-        font-weight: 400;
-        color: #4d0a00;
         position: relative;
         transition: 0.3s all ease-in-out;
         cursor: pointer;
@@ -132,7 +134,9 @@
         }
 
         &:hover {
-            color: #53a06e;
+            .navbar-link {
+                color: #53a06e;
+            }
 
             // line bottom
             &:after {
@@ -141,7 +145,15 @@
         }
     }
 
-    .navbar-link-register {
+    .navbar-link {
+        font-size: 1rem;
+        font-weight: 400;
+        color: #4d0a00;
+        text-decoration: none;
+        transition: 0.3s all ease-in-out;
+    }
+
+    .navbar-link__register {
         border: 1px solid #4d0a00;
         padding: 8px 14px;
         border-radius: 5px;
@@ -150,7 +162,7 @@
         &:hover {
             background-color: #53a06e;
             border-color: #53a06e;
-            color: #ffffff;
+            color: #ffffff !important;
         }
     }
 }
@@ -202,7 +214,7 @@
         background-color: #53a06e;
         padding: 100px 20px 20px 20px;
         // transform: translateX(-100%);
-        transition: all 0.5s ease-in-out;
+        transition: opacity 0.5s ease-in-out, right 0.5s ease-in-out;
 
         @include tablet-small() {
             width: 60%;
@@ -214,6 +226,7 @@
 
         &.open {
             // display: flex;
+            position: fixed;
             opacity: 1;
             right: 0;
         }

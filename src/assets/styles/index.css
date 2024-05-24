@@ -25,6 +25,13 @@ body {
     min-height: 100vh;
 }
 
+section {
+    padding: 5rem 0;
+}
+section:first-child {
+    padding-top: 7rem;
+}
+
 /* Base container styles */
 .container {
     margin: 0 auto;
@@ -37,54 +44,16 @@ img {
     height: auto;
 }
 
-section {
-    &:first-child {
-        padding-top: 130px;
-    }
+.modal-backdrop.fade{
+    display: none;
 }
-
 a:hover {
     text-decoration: none;
 }
 
 /* bootstap */
 .form-control:focus,
-.form-control:focus-within{
+.form-control:focus-within {
     /* border: 0; */
     box-shadow: none;
-}
-
-/* Extra small devices (phones, less than 576px) */
-@media (min-width: 576px) {
-    .container {
-        max-width: 540px;
-    }
-}
-
-/* Small devices (tablets, 576px and up) */
-@media (min-width: 768px) {
-    .container {
-        max-width: 720px;
-    }
-}
-
-/* Medium devices (desktops, 768px and up) */
-@media (min-width: 992px) {
-    .container {
-        max-width: 960px;
-    }
-}
-
-/* Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-    .container {
-        max-width: 1140px;
-    }
-}
-
-/* Extra large devices (larger desktops, 1400px and up) */
-@media (min-width: 1400px) {
-    .container {
-        max-width: 1320px;
-    }
 }

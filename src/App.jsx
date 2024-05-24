@@ -5,25 +5,22 @@ import Home from "./pages/Home/Home";
 import Register from "./pages/Register/Register";
 import Login from "./pages/Login/Login";
 import Footer from "./components/Footer/Footer";
+import HealthCalculations from "./pages/HealthCalculations/HealthCalculations";
 import "./App.css";
 import "./assets/styles/index.css";
+
 
 function App() {
     return (
         <Router>
             <div className="App">
                 <Navbar />
-                {/* <main className="container"> */}
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        {/* <Route path="/features" element={<Features />} />
-                    <Route path="/blog" element={<Blog />} />
-                    <Route path="/recipes" element={<Recipes />} />
-                    <Route path="/about" element={<About />} /> */}
+                        <Route path="/health-calculations" element={<HealthCalculations />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
                     </Routes>
-                {/* </main> */}
                 <Footer />
             </div>
         </Router>

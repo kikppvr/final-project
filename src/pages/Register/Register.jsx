@@ -7,8 +7,8 @@ function Register() {
         <main className="register-main">
             <section className="register">
                 <div className="container">
-                    <div className="register__card">
-                        <h1 className="register__title">Sign Up</h1>
+                    <div className="register__card shadow">
+                        <h1 className="register__title">Sign in</h1>
                         <RegisterForm />
                     </div>
                 </div>

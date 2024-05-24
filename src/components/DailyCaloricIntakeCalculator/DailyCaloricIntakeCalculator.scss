@@ -1,0 +1,45 @@
+.daily-calculator {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.daily-calculator h2 {
+    text-align: center;
+}
+
+.daily-calculator form {
+    display: flex;
+    flex-direction: column;
+}
+
+.daily-calculator label {
+    margin-bottom: 0.5rem;
+}
+
+.daily-calculator input {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.daily-calculator button {
+    padding: 0.5rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.daily-calculator button:disabled {
+    background-color: #ccc;
+}
+
+.bmi-result {
+    text-align: center;
+    margin-top: 1rem;
+}

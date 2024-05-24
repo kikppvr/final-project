@@ -2,7 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
-import store from "./redux/store.js";
+import store from "./redux/store/index.js";
+
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import '../node_modules/bootstrap/dist/js/bootstrap.min.js'
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
@@ -11,3 +15,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         </Provider>
     </React.StrictMode>
 );
+
+// reportWebVitals();

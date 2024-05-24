@@ -1,18 +1,19 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import SuccessModal from "../../components/Modal/SuccessModal/SuccessModal";
-import axios from "axios";
-import { apiBaseUrl } from "../../config";
 
 import "./LoginForm.scss";
+import { loginUser } from "../../redux/actions";
 
 function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
     const navigate = useNavigate();
-    const apiLogin = `${apiBaseUrl}/login`;
+    const dispatch = useDispatch();
+    const { loading } = useSelector((state) => state.userReducer)
 
     const initialValues = {
         username: "",
@@ -54,21 +55,13 @@ function LoginForm() {
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
-            let response = await axios.post(apiLogin, {
-                username: values.username,
-                password: values.password,
-            });
-            console.log("response ", response.data);
-            setShowSuccessModal(true);
-            resetForm();
-            setTimeout(() => {
-                navigate("/");
-            }, 3000);
+            await dispatch(loginUser(values));
+            navigate('/', { replace: true }); 
         } catch (error) {
-            console.error("Error registering user:", error);
-        } finally {
-            setSubmitting(false);
+            console.error(error);
         }
+        setSubmitting(false);
+
     };
 
     const renderError = (message) => <p className="errorMessage">{message}</p>;
@@ -78,88 +71,46 @@ function LoginForm() {
             <Formik
                 initialValues={initialValues}
                 validationSchema={formSchema}
-                onSubmit={handleSubmit}
-            >
-                {({ handleChange }) => (
-                    <Form className="grid gap-8 grid-cols-1">
+                onSubmit={handleSubmit} >
+                {({ handleChange, isSubmitting }) => (
+                    <Form className="">
                         <div className="form-row">
-                            <div
-                                className={`form-control ${
-                                    hasValue.username ? "has-value" : ""
-                                }`}
-                            >
+                            <div className={`form-control ${ hasValue.username ? "has-value" : ""}`} >
                                 <i className="fa-solid fa-user gradient-icon"></i>
-                                <label
-                                    className="form-label"
-                                    htmlFor="username"
-                                >
-                                    Username
-                                </label>
+                                <label className="form-label"  htmlFor="username">Username</label>
                                 <Field
                                     name="username"
                                     type="text"
                                     className="form-input"
                                     autoComplete="username"
-                                    onChange={(e) =>
-                                        handleChangeValidation(
-                                            e,
-                                            handleChange,
-                                            "username"
-                                        )
-                                    }
+                                    onChange={(e) => handleChangeValidation(e,handleChange, "username")}
                                 />
                             </div>
-                            <ErrorMessage
-                                name="username"
-                                render={renderError}
-                            />
+                            <ErrorMessage name="username" render={renderError}/>
                         </div>
 
                         <div className="form-row">
-                            <div
-                                className={`form-control ${
-                                    hasValue.password ? "has-value" : ""
-                                }`}
-                            >
+                            <div className={`form-control ${ hasValue.password ? "has-value" : ""}`}>
                                 <i className="fa-solid fa-lock gradient-icon"></i>
-                                <label
-                                    className="form-label"
-                                    htmlFor="password"
-                                >
-                                    Password
-                                </label>
+                                <label className="form-label" htmlFor="password">Password</label>
                                 <Field
                                     name="password"
                                     type={showPassword ? "text" : "password"}
                                     className="form-input"
                                     autoComplete="new-password"
-                                    onChange={(e) =>
-                                        handleChangeValidation(
-                                            e,
-                                            handleChange,
-                                            "password"
-                                        )
-                                    }
+                                    onChange={(e) => handleChangeValidation(e, handleChange, "password")}
                                 />
                                 <span
-                                    className={`text-10 cursor-pointer text-a-green-91C788 ${
-                                        hasValue.password ? "block" : "hidden"
-                                    }`}
-                                    onClick={() =>
-                                        setShowPassword(!showPassword)
-                                    }
-                                >
+                                    className={`text-10 cursor-pointer text-a-green-91C788 ${hasValue.password ? "block" : "hidden"}`}
+                                    onClick={() => setShowPassword(!showPassword)}>
                                     {showPassword ? "HIDE" : "SHOW"}
                                 </span>
                             </div>
-                            <ErrorMessage
-                                name="password"
-                                render={renderError}
-                            />
+                            <ErrorMessage name="password" render={renderError} />
                         </div>
 
-                        <button type="submit" className="btn-submit">
-                            Login
+                        <button type="submit" className="btn-submit" disabled={isSubmitting || loading}>
+                            Submit
                         </button>
                     </Form>
                 )}
