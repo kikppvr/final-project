@@ -56,7 +56,7 @@ const DailyCaloricIntakeCalculator = () => {
                     <Form>
                         <div className="form-row">
                             <div className={`form-control ${ hasValue.tdee ? "has-value" : ""}`} >
-                                <i class="fa-solid fa-heart"></i>
+                                <i className="fa-solid fa-heart"></i>
                                 <label className="form-label"  htmlFor="tdee">Your TDEE (kcal/day)</label>
                                 <Field
                                     name="tdee"
@@ -72,7 +72,7 @@ const DailyCaloricIntakeCalculator = () => {
                         <div className="form-row">
                             <div className={`form-control ${ hasValue.goal ? "has-value" : ""}`} >
                                 <i className="fa-solid fa-hand-holding-heart"></i>
-                                <Field className="form-select"  as="select" name="goal">
+                                <Field className="form-select" as="select" name="goal">
                                     <option value="maintain">Maintain Weight</option>
                                     <option value="lose">Lose Weight</option>
                                     <option value="gain">Gain Weight</option>

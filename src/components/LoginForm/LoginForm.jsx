@@ -64,7 +64,7 @@ function LoginForm() {
             setShowLoadingModal(false);
             setAlertMessage("An error occurred. Please try again.");
             setShowAlertModal(true);
-            console.error(error);
+            // console.error(error);
         }
         setSubmitting(false);
 

@@ -61,12 +61,21 @@
         img {
             margin-right: 10px;
             border: 2px solid #ffffff;
+            border-radius: 50%;
+
+            @include tablet-small() {
+                margin-right: 0;
+            }
         }
     }
     .navbar-profile-title {
         color: #4d0a00;
         font-weight: 500;
         font-size: 1rem;
+
+        @include tablet-small() {
+            display: none;
+        }
     }
 
     .navbar-dropdown {
@@ -111,7 +120,7 @@
         width: 100%;
         font-size: 14px;
         font-weight: 500;
-        padding: 10px 60px 10px 10px;
+        padding: 8px 40px 8px 10px;
         color: #5d5d5d;
         transition: all 0.3s ease-in-out;
         border-radius: 4px;
@@ -130,7 +139,6 @@
         }
 
         .navbar-item {
-
             // line bottom
             &:after {
                 background-color: #53a06e;
@@ -285,11 +293,11 @@
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        padding: 0 20px;
+        padding: 0 15px;
     }
 
     @include tablet-small() {
-        padding: 0 10px;
+        padding: 0;
     }
 
     .hamburger {
@@ -357,7 +365,7 @@
         }
     }
 
-    .navbar-link{
+    .navbar-link {
         color: #ffffff;
     }
 }

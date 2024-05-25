@@ -69,20 +69,21 @@ const Navbar = () => {
                             <div className="navbar-right">
                                 <div className="navbar-profile" onClick={toggleDropdownProfile}>
                                     <img className="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                                    {/* <img src="assets/images/profile/default-profile.png" alt="" className="w-[40px] h-[40px]"/> */}
                                     <div className="navbar-profile-title">{userInfo.username}</div>
                                 </div>
                                 {isOpenDropdownProfile && (
                                     <div className="navbar-dropdown">
                                         <div className="navbar-dropdown-item">
-                                            <a href="/" className="navbar-dropdown-link">
+                                            <a href="/profile" className="navbar-dropdown-link">
                                                 <i className="fa-solid fa-user"></i>
-                                                View Profile
+                                                Profile
                                             </a>
                                         </div>
                                         <div className="navbar-dropdown-item">
-                                            <a href="/" className="navbar-dropdown-link">
-                                                <i className="fa-solid fa-user-pen"></i>
-                                                Edit Profile
+                                            <a href="/setting" className="navbar-dropdown-link">
+                                                <i className="fa-solid fa-gear"></i>
+                                                Setting
                                             </a>
                                         </div>
                                         <div className="divider"></div>
@@ -98,7 +99,6 @@ const Navbar = () => {
                         ) : (
                             <div className="navbar-right">
                                 <div className="navbar-profile" onClick={toggleDropdownProfile}>
-                                    {/* <i className="fa-solid fa-ellipsis-vertical"></i> */}
                                     <i className="fa-solid fa-gears"></i>
                                 </div>
                                 {isOpenDropdownProfile && (
@@ -149,20 +149,21 @@ const Navbar = () => {
                              <div className="navbar-right">
                                <div className="navbar-profile" onClick={toggleDropdownProfile}>
                                     <img className="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
+                                    {/* <img src="assets/images/profile/default-profile.png" alt="" className="w-[40px] h-[40px]"/> */}
                                     <div className="navbar-profile-title">{userInfo.username}</div>
                                 </div>
                                 {isOpenDropdownProfile && (
                                     <div className="navbar-dropdown">
                                         <div className="navbar-dropdown-item">
-                                            <a href="/" className="navbar-dropdown-link">
+                                            <a href="/profile" className="navbar-dropdown-link">
                                                 <i className="fa-solid fa-user"></i>
-                                                View Profile
+                                                Profile
                                             </a>
                                         </div>
                                         <div className="navbar-dropdown-item">
-                                            <a href="/" className="navbar-dropdown-link">
-                                                <i className="fa-solid fa-user-pen"></i>
-                                                Edit Profile
+                                            <a href="/setting" className="navbar-dropdown-link">
+                                                <i className="fa-solid fa-gear"></i>
+                                                Setting
                                             </a>
                                         </div>
                                         <div className="divider"></div>
