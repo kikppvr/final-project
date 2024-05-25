@@ -81,7 +81,7 @@ const Navbar = () => {
                                             </a>
                                         </div>
                                         <div className="navbar-dropdown-item">
-                                            <a href="/setting" className="navbar-dropdown-link">
+                                            <a href="/" className="navbar-dropdown-link">
                                                 <i className="fa-solid fa-gear"></i>
                                                 Setting
                                             </a>
@@ -161,7 +161,7 @@ const Navbar = () => {
                                             </a>
                                         </div>
                                         <div className="navbar-dropdown-item">
-                                            <a href="/setting" className="navbar-dropdown-link">
+                                            <a href="/" className="navbar-dropdown-link">
                                                 <i className="fa-solid fa-gear"></i>
                                                 Setting
                                             </a>

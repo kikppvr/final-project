@@ -38,12 +38,24 @@ export const loginUser = (userData) => async (dispatch) => {
 };
 
 export const updateProfile = (userData) => async (dispatch) => {
+    // dispatch({ type: Types.UPDATE_PROFILE_REQUEST });
+    // try {
+    //     const response = await axios.put(`${API_URL}/${userData._id}`, userData);
+    //     dispatch({ type: Types.UPDATE_PROFILE_SUCCESS, payload: response.data });
+    //     localStorage.setItem('userInfo', JSON.stringify(response.data));
+    // } catch (error) {
+    //     dispatch({ type: Types.UPDATE_PROFILE_FAILURE, payload: error.message });
+    //     throw error; // Rethrow เพื่อจัดการใน component
+    // }
     dispatch({ type: Types.UPDATE_PROFILE_REQUEST });
     try {
+        console.log("Updating user with data: ", userData); // Log the data to be updated
         const response = await axios.put(`${API_URL}/${userData._id}`, userData);
         dispatch({ type: Types.UPDATE_PROFILE_SUCCESS, payload: response.data });
         localStorage.setItem('userInfo', JSON.stringify(response.data));
+        return response.data;
     } catch (error) {
+        console.error("Error updating profile: ", error.message); // Log the error message
         dispatch({ type: Types.UPDATE_PROFILE_FAILURE, payload: error.message });
         throw error; // Rethrow เพื่อจัดการใน component
     }
