@@ -10,16 +10,10 @@ const persistedState = {
   },
 };
 
-// const rootReducer = combineReducers({
-//   user: userReducer,
-// });
-
 const store = createStore(
   userReducer,
   persistedState,
   applyMiddleware(thunk)
 );
-
-// const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default store;

@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import SuccessModal from "../../components/Modal/SuccessModal/SuccessModal";
+import LoadingModal from "../Modal/LoadingModal/LoadingModal";
+import AlertModal from "../Modal/AlertModal/AlertModal";
 
 import "./LoginForm.scss";
 import { loginUser } from "../../redux/actions";
@@ -11,9 +13,19 @@ import { loginUser } from "../../redux/actions";
 function LoginForm() {
     const [showPassword, setShowPassword] = useState(false);
     const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [showLoadingModal, setShowLoadingModal] = useState(false);
+    const [showAlertModal, setShowAlertModal] = useState(false);
+    const [successMessage, setSuccessMessage] = useState("");
+    const [alertMessage, setAlertMessage] = useState("");
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const { loading } = useSelector((state) => state.userReducer)
+
+    useEffect(() => {
+        // setShowLoadingModal(true)
+        // setShowAlertModal(true)
+        // setShowSuccessModal(true)
+    })
 
     const initialValues = {
         username: "",
@@ -26,26 +38,8 @@ function LoginForm() {
     });
 
     const formSchema = Yup.object({
-        username: Yup.string()
-            .min(2, "Username is too short!")
-            .max(50, "Username is too Long!")
-            .required("Username is required"),
-        password: Yup.string()
-            .min(8, "Password is too short!")
-            .matches(
-                /[a-z]/,
-                "Password must contain at least one lowercase letter"
-            )
-            .matches(
-                /[A-Z]/,
-                "Password must contain at least one uppercase letter"
-            )
-            .matches(/[0-9]/, "Password must contain at least one number")
-            .matches(
-                /[@$!%*?&#]/,
-                "Password must contain at least one special character"
-            )
-            .required("Password is required"),
+        username: Yup.string().required("Username is required"),
+        password: Yup.string().required("Password is required"),
     });
 
     const handleChangeValidation = (e, handleChange, field) => {
@@ -54,15 +48,37 @@ function LoginForm() {
     };
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+        setShowLoadingModal(true)
         try {
-            await dispatch(loginUser(values));
-            navigate('/', { replace: true }); 
+            let response = await dispatch(loginUser(values));
+            if (response) {
+                setShowLoadingModal(false);
+                setSuccessMessage("Login success!")
+                setShowSuccessModal(true);
+            } else {
+                setShowLoadingModal(false);
+                setAlertMessage("User not found!");
+                setShowAlertModal(true);
+            }
         } catch (error) {
+            setShowLoadingModal(false);
+            setAlertMessage("An error occurred. Please try again.");
+            setShowAlertModal(true);
             console.error(error);
         }
         setSubmitting(false);
 
     };
+
+    const handleCloseSuccessModal = () => {
+        setShowSuccessModal(false);
+        window.location.replace('/')
+    };
+
+    const handleCloseAlertModal = () => {
+        setShowAlertModal(false)
+        navigate(0)
+    }
 
     const renderError = (message) => <p className="errorMessage">{message}</p>;
 
@@ -116,8 +132,20 @@ function LoginForm() {
                 )}
             </Formik>
 
+            {showLoadingModal && (
+                <LoadingModal />
+            )}
+
             {showSuccessModal && (
-                <SuccessModal onClose={() => setShowSuccessModal(false)} />
+                <SuccessModal onClose={handleCloseSuccessModal}>
+                    <p>{successMessage}</p>
+                </SuccessModal>
+            )}
+
+            {showAlertModal && (
+                <AlertModal onClose={handleCloseAlertModal}>
+                    <p>{alertMessage}</p>
+                </AlertModal>
             )}
         </div>
     );

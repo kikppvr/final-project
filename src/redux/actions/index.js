@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Types } from "./types";
 
-const API_URL = "https://crudcrud.com/api/428fbb19b1e74e27a20690e3dc5b50ab/users";
+const API_URL = "https://crudcrud.com/api/cba60f96ea334ca1ba4045c4d0499ba6/users";
 
 // Action Creators
 export const registerUser = (userData) => async (dispatch) => {
@@ -23,11 +23,14 @@ export const loginUser = (userData) => async (dispatch) => {
         if(user) {
             localStorage.setItem('userInfo', JSON.stringify(user));
             dispatch({ type: Types.LOGIN_SUCCESS, payload: user });
+            return user;
         } else {
             dispatch({ type: Types.LOGIN_FAILURE, payload: 'Invalid credentials' });
+            return null;
         }
     } catch (error) {
         dispatch({ type: LOGIN_FAILURE, payload: error.message });
+        return null;
     }
 };
 

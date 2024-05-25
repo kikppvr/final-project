@@ -29,7 +29,13 @@ section {
     padding: 5rem 0;
 }
 section:first-child {
-    padding-top: 7rem;
+    padding-top: 9rem;
+}
+
+@media (max-width: 768px) {
+    section:first-child {
+        padding-top: 8rem;
+    }
 }
 
 /* Base container styles */
@@ -44,9 +50,9 @@ img {
     height: auto;
 }
 
-.modal-backdrop.fade{
+/* .modal-backdrop.fade{
     display: none;
-}
+} */
 a:hover {
     text-decoration: none;
 }

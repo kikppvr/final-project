@@ -32,7 +32,12 @@ export default {
          },
          colors: {
             'a-green-91C788': '#91C788',
-
+            'a-green-464E2E': '#464E2E',
+            'a-brown-4d0a00': '#4d0a00',
+            'a-brown-AF8F6F': '#AF8F6F',
+            'a-brown-543310': '#543310',
+            'a-red-D37676': '#D37676',
+            'a-red-EE4E4E': '#EE4E4E',
          }
       },
    },

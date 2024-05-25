@@ -1,14 +1,12 @@
 @import "../../../assets/styles/breakpoints.scss";
 
-
-.modal-success {
+.modal-alert {
     color: #11183f;
     border: 0;
 
     .modal-dialog {
-
         @include max-tablet() {
-           justify-content: center;
+            justify-content: center;
         }
     }
 
@@ -30,8 +28,8 @@
         padding: 25px 20px;
 
         i {
-            background-color: #dcfce7;
-            color: #24a955;
+            background-color: #ffcaca;
+            color: #f31818;
             font-size: 25px;
             border-radius: 50%;
             padding: 15px;

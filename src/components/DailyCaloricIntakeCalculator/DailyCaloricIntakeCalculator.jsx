@@ -11,10 +11,20 @@ const DailyCaloricIntakeCalculator = () => {
         goal: 'maintain',
     }
 
+    const [hasValue, setHasValue] = useState({
+        tdee: false,
+        goal: false,
+    });
+
     const formSchema = Yup.object({
         tdee: Yup.number().required('Required').positive('Must be positive'),
         goal: Yup.string().oneOf(['maintain', 'lose', 'gain']).required('Required'),
     })
+
+    const handleChangeValidation = (e, handleChange, field) => {
+        handleChange(e),
+            setHasValue({ ...hasValue, [field]: e.target.value !== "" });
+    };
     
     const calculateDailyCalories = (tdee, goal) => {
         let calories = tdee;
@@ -33,38 +43,54 @@ const DailyCaloricIntakeCalculator = () => {
         setSubmitting(false);
     }
 
+    const renderError = (message) => <p className="errorMessage">{message}</p>;
+
     return (
         <div className="daily-calculator">
-            <h2>Daily CaloricIntake Calculator</h2>
+            <h2 className="daily-calculator-title">Daily Caloric Intake Calculator</h2>
             <Formik 
                 initialValues={initialValues}
                 validationSchema={formSchema}
                 onSubmit={handleSubmit}>
-                {({ isSubmitting }) => (
+                {({ isSubmitting, handleChange  }) => (
                     <Form>
-                        <div>
-                            <label htmlFor="tdee">Your TDEE (kcal/day):</label>
-                            <Field type="number" name="tdee" />
-                            <ErrorMessage name="tdee" component="div" />
+                        <div className="form-row">
+                            <div className={`form-control ${ hasValue.tdee ? "has-value" : ""}`} >
+                                <i class="fa-solid fa-heart"></i>
+                                <label className="form-label"  htmlFor="tdee">Your TDEE (kcal/day)</label>
+                                <Field
+                                    name="tdee"
+                                    type="number"
+                                    className="form-input"
+                                    onChange={(e) => handleChangeValidation(e,handleChange, "tdee")}
+                                />
+                            </div>
+                            <ErrorMessage name="tdee" render={renderError}/>
                         </div>
-                        <div>
-                            <label htmlFor="goal">Your Goal:</label>
-                            <Field as="select" name="goal">
-                                <option value="maintain">Maintain Weight</option>
-                                <option value="lose">Lose Weight</option>
-                                <option value="gain">Gain Weight</option>
-                            </Field>
-                            <ErrorMessage name="goal" component="div" />
+
+               
+                        <div className="form-row">
+                            <div className={`form-control ${ hasValue.goal ? "has-value" : ""}`} >
+                                <i className="fa-solid fa-hand-holding-heart"></i>
+                                <Field className="form-select"  as="select" name="goal">
+                                    <option value="maintain">Maintain Weight</option>
+                                    <option value="lose">Lose Weight</option>
+                                    <option value="gain">Gain Weight</option>
+                                </Field>
+                            </div>
+                            <ErrorMessage name="goal" render={renderError}/>
                         </div>
-                        <button type="submit" disabled={isSubmitting}>
+
+                        <button type="submit" className="btn-calculate" disabled={isSubmitting}>
                             Calculate
                         </button>
                 </Form>
                 )}
             </Formik>
             {dailyCalories && (
-                <div>
-                    <h3>Your daily caloric intake should be: {dailyCalories} kcal/day</h3>
+                <div className="mt-[30px]">
+                    <h3 className="font-medium text-a-brown-AF8F6F mb-2">Your daily caloric intake should be: 
+                    <span className="text-a-red-EE4E4E"> {dailyCalories}</span> kcal/day</h3>
                 </div>
             )}
         </div>

@@ -1,7 +1,10 @@
 import React from "react";
 import "./Home.scss";
+import { useSelector } from "react-redux";
 
 function Home() {
+    const userInfo  = useSelector((state) => state.userReducer.userInfo)
+
     return (
         <main className="home-main">
             <section className="home-banner">
@@ -9,7 +12,7 @@ function Home() {
                 <div className="home-banner__body">
                     <h1 className="home-banner__title">Welcome!</h1>
                     <p className="home-banner__text">
-                        Hello Prapvarine, discover how to find, track, and enjoy
+                        Hello <span className="text-a-brown-4d0a00 font-medium">{userInfo ? userInfo.username : ''}</span>, discover how to find, track, and enjoy
                         healthy food with us.
                     </p>
                 </div>
