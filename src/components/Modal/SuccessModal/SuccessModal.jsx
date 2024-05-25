@@ -10,22 +10,27 @@ const SuccessModal = ({ onClose, children }) => {
     useEffect(() => {
         const modalElement = modalRef.current;
         if (modalElement) {
-            // แสดงโมดอลทันทีหลังจากที่คอมโพเนนต์ถูกเมาท์
-            const bootstrapModal = new window.bootstrap.Modal(modalElement);
-            bootstrapModal.show();
+            console.log('Modal element found:', modalElement);
+            if (window.bootstrap && window.bootstrap.Modal) {
+                // แสดงโมดอลทันทีหลังจากที่คอมโพเนนต์ถูกเมาท์
+                const bootstrapModal = new window.bootstrap.Modal(modalElement);
+                bootstrapModal.show();
 
-            // ฟังชั่นสำหรับจัดการการปิดโมดอล
-            const handleHide = () => {
-                bootstrapModal.hide();
-                onClose();
-            };
+                // ฟังชั่นสำหรับจัดการการปิดโมดอล
+                const handleHide = () => {
+                    bootstrapModal.hide();
+                    onClose();
+                };
 
-            modalElement.addEventListener('hidden.bs.modal', handleHide);
+                modalElement.addEventListener('hidden.bs.modal', handleHide);
 
-            // ล้างการตั้งค่าเมื่อคอมโพเนนต์ถูกยกเลิก
-            return () => {
-                modalElement.removeEventListener('hidden.bs.modal', handleHide);
-            };
+                // ล้างการตั้งค่าเมื่อคอมโพเนนต์ถูกยกเลิก
+                return () => {
+                    modalElement.removeEventListener('hidden.bs.modal', handleHide);
+                };
+            } else {
+                console.error('Bootstrap Modal is not available in window.bootstrap');
+            }
         }
     }, [onClose]);
 
