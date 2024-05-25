@@ -1,0 +1,50 @@
+@import "../../assets/styles/breakpoints.scss";
+
+.recipes {
+    padding: 8rem 0 6rem 0;
+    background-color: #998e7e;
+
+    .recipes-title {
+        text-align: center;
+        font-weight: 600;
+        font-size: 2.5rem;
+        color: #ffffff;
+        margin-bottom: 3rem;
+    
+        @include tablet-small() {
+            font-size: 2rem;
+        }
+    }
+
+    .recipes-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .recipe-card {
+        background-color: #ffffff;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 16px;
+        max-width: 300px;
+        text-align: center;
+
+        .recipe-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .recipe-name {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+
+        .recipe-description {
+            font-size: 1rem;
+            color: #666;
+        }
+    }
+}

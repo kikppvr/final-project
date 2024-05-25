@@ -122,7 +122,7 @@ const Navbar = () => {
                             <a href="/health-calculations" className="navbar-link">Health Calculations</a>
                         </div>
                         <div className="navbar-item">
-                            <a href="/" className="navbar-link">Recipes</a>
+                            <a href="/recipes" className="navbar-link">Recipes</a>
                         </div>
                     </div>
                 </div>
@@ -141,8 +141,8 @@ const Navbar = () => {
                             <div className={`navbar-item ${activeMenu('/health-calculations')}`}>
                                 <a href="/health-calculations" className="navbar-link">Health Calculations</a>
                             </div>
-                            <div className={`navbar-item ${activeMenu('/')}`}>
-                                <a href="/" className="navbar-link">Recipes</a>
+                            <div className={`navbar-item ${activeMenu('/recipes')}`}>
+                                <a href="/recipes" className="navbar-link">Recipes</a>
                             </div>
                         </div>
                         { userInfo ? (

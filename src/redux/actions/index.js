@@ -10,8 +10,10 @@ export const registerUser = (userData) => async (dispatch) => {
     try {
         const response = await axios.post(API_URL, userData);
         dispatch({ type: Types.REGISTER_SUCCESS, payload: response.data });
+        return response.data;
     } catch (error) {
         dispatch({ type: Types.REGISTER_FAILURE, payload: error.message });
+        return null;
     }
 };
 

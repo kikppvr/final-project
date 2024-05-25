@@ -1,22 +1,33 @@
-import React, { useState }from "react";
+import React, { useState, useEffect }from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from '../../redux/actions';
 import * as Yup from "yup";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import SuccessModal from "../Modal/SuccessModal/SuccessModal";
-// import { apiBaseUrl } from "../../config";
+import LoadingModal from "../Modal/LoadingModal/LoadingModal";
+import AlertModal from "../Modal/AlertModal/AlertModal";
 //scss
 import "./RegisterForm.scss";
 
 function RegisterForm() {
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-    const [showSuccessModal, setShowSuccessModal] = useState(false)
+    const [showSuccessModal, setShowSuccessModal] = useState(false);
+    const [showLoadingModal, setShowLoadingModal] = useState(false);
+    const [showAlertModal, setShowAlertModal] = useState(false);
+    const [successMessage, setSuccessMessage] = useState("");
+    const [alertMessage, setAlertMessage] = useState("");
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const { loading } = useSelector((state) => state.userReducer)
     // const apiRegister = `${apiBaseUrl}/register`
+
+    useEffect(() => {
+        // setShowLoadingModal(true)
+        // setShowAlertModal(true)
+        // setShowSuccessModal(true)
+    })
 
     const initialValues = {
         name: "",
@@ -57,19 +68,37 @@ function RegisterForm() {
     }
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-       try {
-            await dispatch(registerUser(values))
-            navigate('/login')
-       } catch (error) {
+        setShowLoadingModal(true);
+        try {
+            const response = await dispatch(registerUser(values));
+            console.log('response', response)
+            if (response) { // Check if the registration was successful
+                setSuccessMessage("Registration successful!");
+                setShowSuccessModal(true);
+                resetForm();
+            } else {
+                setAlertMessage("Registration failed. Please try again.");
+                setShowAlertModal(true);
+            }
+        } catch (error) {
             console.error(error);
-       }
-
-       setSubmitting(false);
+            setAlertMessage("An error occurred. Please try again.");
+            setShowAlertModal(true);
+        } finally {
+            setShowLoadingModal(false);
+            setSubmitting(false);
+        }
     };
 
     const handleCloseModal = () => {
         setShowSuccessModal(false);
-        navigate("/login");
+        window.location.replace('/login')
+        // navigate("/login");
+    }
+
+    const handleCloseAlertModal = () => {
+        setShowAlertModal(false);
+        navigate(0)
     }
 
     const renderError = (message) => <p className="errorMessage">{message}</p>;
@@ -172,7 +201,21 @@ function RegisterForm() {
                 )}
             </Formik>
 
-            {showSuccessModal && <SuccessModal onClose={handleCloseModal} />}
+            {showLoadingModal && (
+                <LoadingModal />
+            )}
+
+            {showSuccessModal && (
+                <SuccessModal onClose={handleCloseModal}>
+                    <p>{successMessage}</p>
+                </SuccessModal>
+            )}
+
+            {showAlertModal && (
+                <AlertModal onClose={handleCloseAlertModal}>
+                    <p>{alertMessage}</p>
+                </AlertModal>
+            )}
         </div>
     );
 }
