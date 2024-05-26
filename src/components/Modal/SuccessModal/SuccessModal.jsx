@@ -6,33 +6,61 @@ import "../SuccessModal/SuccessModal.scss";
 const SuccessModal = ({ onClose, children }) => {
     const modalRef = useRef(null);
 
-    
     useEffect(() => {
-        const modalElement = modalRef.current;
-        if (modalElement) {
-            console.log('Modal element found:', modalElement);
-            if (window.bootstrap && window.bootstrap.Modal) {
-                // แสดงโมดอลทันทีหลังจากที่คอมโพเนนต์ถูกเมาท์
-                const bootstrapModal = new window.bootstrap.Modal(modalElement);
-                bootstrapModal.show();
+        const loadBootstrapModal = async () => {
+            const modalElement = modalRef.current;
+            if (modalElement) {
+                console.log('Modal element found:', modalElement);
+                if (window.bootstrap && window.bootstrap.Modal) {
+                    const bootstrapModal = new window.bootstrap.Modal(modalElement);
+                    bootstrapModal.show();
 
-                // ฟังชั่นสำหรับจัดการการปิดโมดอล
-                const handleHide = () => {
-                    bootstrapModal.hide();
-                    onClose();
-                };
+                    const handleHide = () => {
+                        bootstrapModal.hide();
+                        onClose();
+                    };
 
-                modalElement.addEventListener('hidden.bs.modal', handleHide);
+                    modalElement.addEventListener('hidden.bs.modal', handleHide);
 
-                // ล้างการตั้งค่าเมื่อคอมโพเนนต์ถูกยกเลิก
-                return () => {
-                    modalElement.removeEventListener('hidden.bs.modal', handleHide);
-                };
-            } else {
-                console.error('Bootstrap Modal is not available in window.bootstrap');
+                    return () => {
+                        modalElement.removeEventListener('hidden.bs.modal', handleHide);
+                    };
+                } else {
+                    console.error('Bootstrap Modal is not available in window.bootstrap');
+                }
             }
-        }
+        };
+
+        loadBootstrapModal();
     }, [onClose]);
+
+    
+    // useEffect(() => {
+    //     const modalElement = modalRef.current;
+    //     if (modalElement) {
+    //         console.log('Modal element found:', modalElement);
+    //         if (window.bootstrap && window.bootstrap.Modal) {
+    //             // แสดงโมดอลทันทีหลังจากที่คอมโพเนนต์ถูกเมาท์
+    //             const bootstrapModal = new window.bootstrap.Modal(modalElement);
+    //             bootstrapModal.show();
+
+    //             // ฟังชั่นสำหรับจัดการการปิดโมดอล
+    //             const handleHide = () => {
+    //                 bootstrapModal.hide();
+    //                 onClose();
+    //             };
+
+    //             modalElement.addEventListener('hidden.bs.modal', handleHide);
+
+    //             // ล้างการตั้งค่าเมื่อคอมโพเนนต์ถูกยกเลิก
+    //             return () => {
+    //                 modalElement.removeEventListener('hidden.bs.modal', handleHide);
+    //             };
+    //         } else {
+    //             console.error('Bootstrap Modal is not available in window.bootstrap');
+    //         }
+    //     }
+    // }, [onClose]);
 
     return (
         <div className="modal modal-success fade" tabIndex="-1" ref={modalRef}>
