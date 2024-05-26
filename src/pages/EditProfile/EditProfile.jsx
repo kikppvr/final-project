@@ -27,13 +27,6 @@ const EditProfile = () => {
         // setShowSuccessModal(true)
     })
 
-    // const initialValues = {
-    //     _id: user._id, // Ensure _id is included
-    //     name: user.name,
-    //     username: user.username,
-    //     email: user.email,
-    // };
-
     const initialValues = {
         _id: user ? user._id : "", // Ensure _id is included
         name: user ? user.name : "",
@@ -68,14 +61,24 @@ const EditProfile = () => {
     }
 
     const handleSubmit = async (values, { setSubmitting }) => {
+
+        console.log('values', values)
         setSubmitting(true);
         setSuccessMessage("");
         setAlertMessage("");
         setShowLoadingModal(true);
+
+         // ตรวจสอบและส่งค่าที่ไม่ได้อัพเดท
+         const updatedValues = {
+            _id: values._id,
+            name: values.name !== initialValues.name ? values.name : user.name,
+            username: values.username !== initialValues.username ? values.username : user.username,
+            email: values.email !== initialValues.email ? values.email : user.email,
+        };
         
         try {
-            let response = await dispatch(updateProfile(values));
-            console.log('response: ', response);
+            let response = await dispatch(updateProfile(updatedValues));
+            // console.log('response: ', response);
             setShowLoadingModal(false);
             if (response && response.payload) {
                 setSuccessMessage("Profile updated successfully!");
@@ -86,7 +89,7 @@ const EditProfile = () => {
             }
     
         } catch (error) {
-            console.log('error: ', error)
+            // console.log('error: ', error)
             setShowLoadingModal(false);
             setAlertMessage("An error occurred while updating the profile. Please try again.");
             setShowAlertModal(true);

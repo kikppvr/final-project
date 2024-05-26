@@ -17,6 +17,7 @@ const userReducer = (state = initialState, action) => {
         case Types.REGISTER_REQUEST:
         case Types.LOGIN_REQUEST:
         case Types.UPDATE_PROFILE_REQUEST:
+        case Types.DELETE_USER_REQUEST:
             return { ...state, loading: true, error: null};
         
         case Types.REGISTER_SUCCESS:
@@ -24,9 +25,13 @@ const userReducer = (state = initialState, action) => {
         case Types.UPDATE_PROFILE_SUCCESS:
             return { ...state, loading: false, userInfo: action.payload };
 
+        case Types.DELETE_USER_SUCCESS:
+            return { ...state, loading: false, userInfo: null };
+    
         case Types.REGISTER_FAILURE:
         case Types.LOGIN_FAILURE: 
         case Types.UPDATE_PROFILE_FAILURE:
+        case Types.DELETE_USER_FAILURE:
             return { ...state, loading: false, error: action.payload };
         
         case Types.LOGOUT: 

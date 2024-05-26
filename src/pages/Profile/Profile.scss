@@ -27,6 +27,7 @@
     position: relative;
 
     .btn-edit-profile {
+        text-align: center;
         font-size: 1rem;
         margin-top: 1rem;
         padding: 6px 15px;
@@ -40,6 +41,23 @@
             color: #543310;
             background-color: #ffffff;
             border: 1px solid #543310;
+        }
+    }
+
+    .btn-delete-profile{
+        font-size: 1rem;
+        margin-top: 1rem;
+        padding: 6px 15px;
+        border-radius: 20px;
+        background-color: #ffdddd;
+        border: 1px solid #ffdddd;
+        color: #f31818;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            color: #f31818;
+            background-color: #ffdddd;
+            border: 1px solid #f31818;
         }
     }
 }
