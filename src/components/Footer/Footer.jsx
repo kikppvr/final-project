@@ -11,27 +11,41 @@ const Footer = () => {
                 <div className="footer-top">
                     <div className="footer-section">
                         <h3>About Us</h3>
-                        <p>
+                        <p className="mb-4">
                             A health website dedicated to providing valuable
                             information and advice for a better life.
                         </p>
+
+                        <h3>Referrence</h3>
+                        <ul>
+                            <li>
+                                <a target="_blank" href="https://www.figma.com/design/tXQLs0SHjuVLEXdZBm6afM/HealthyBite---Nutrition-Expert-Website-(Community)?node-id=59-1138&t=y1zkWCvGcvCFPSpt-0">
+                                    HeallthyBite
+                                </a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://chloeting.com/program/c/most-popular">
+                                    Chloe Ting
+                                </a>
+                            </li>
+                        </ul>
                     </div>
                     <div className="footer-section">
                         <h3>Useful Links</h3>
                         <ul>
                             <li>
-                                <a href="https://who.int">
+                                <a target="_blank" href="https://who.int">
                                     World Health Organization (WHO)
                                 </a>
                             </li>
                             <li>
-                                <a href="https://cdc.gov">
+                                <a target="_blank" href="https://cdc.gov">
                                     Centers for Disease Control and Prevention
                                     (CDC)
                                 </a>
                             </li>
                             <li>
-                                <a href="https://mayoclinic.org">Mayo Clinic</a>
+                                <a target="_blank" href="https://mayoclinic.org">Mayo Clinic</a>
                             </li>
                         </ul>
                     </div>
@@ -39,7 +53,7 @@ const Footer = () => {
                         <h3>Contact Us</h3>
                         <ul>
                             <li>
-                                <a href="/contact">Online Contact Form</a>
+                                <a href="/">Online Contact Form</a>
                             </li>
                             <li>
                                 <a href="mailto:info@healthwebsite.com">

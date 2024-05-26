@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logout } from "../../redux/actions";
 import "./Navbar.scss";
+import CartIcon from "../CartIcon/CartIcon";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -66,7 +67,10 @@ const Navbar = () => {
                         <span className="navbar-brand-title">Healthy Me</span>
                     </a>
                     { userInfo ? (
-                            <div className="navbar-right">
+                            <div className="navbar-right flex items-center">
+                                 <div className="mr-4">
+                                    <CartIcon />
+                                </div>
                                 <div className="navbar-profile" onClick={toggleDropdownProfile}>
                                     <img className="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
                                     {/* <img src="assets/images/profile/default-profile.png" alt="" className="w-[40px] h-[40px]"/> */}
@@ -97,7 +101,10 @@ const Navbar = () => {
                                 )}
                             </div>
                         ) : (
-                            <div className="navbar-right">
+                            <div className="navbar-right flex items-center">
+                                <div className="mr-4">
+                                    <CartIcon />
+                                </div>
                                 <div className="navbar-profile" onClick={toggleDropdownProfile}>
                                     <i className="fa-solid fa-gears"></i>
                                 </div>
@@ -124,6 +131,9 @@ const Navbar = () => {
                         <div className="navbar-item">
                             <a href="/recipes" className="navbar-link">Recipes</a>
                         </div>
+                        <div className="navbar-item">
+                            <a href="/products" className="navbar-link">Products</a>
+                        </div>
                     </div>
                 </div>
                 </div>
@@ -144,9 +154,15 @@ const Navbar = () => {
                             <div className={`navbar-item ${activeMenu('/recipes')}`}>
                                 <a href="/recipes" className="navbar-link">Recipes</a>
                             </div>
+                            <div className={`navbar-item ${activeMenu('/products')}`}>
+                                <a href="/products" className="navbar-link">Products</a>
+                            </div>
                         </div>
                         { userInfo ? (
-                             <div className="navbar-right">
+                             <div className="navbar-right flex items-end">
+                                 <div className="mr-4">
+                                    <CartIcon />
+                                </div>
                                <div className="navbar-profile" onClick={toggleDropdownProfile}>
                                     <img className="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
                                     {/* <img src="assets/images/profile/default-profile.png" alt="" className="w-[40px] h-[40px]"/> */}
@@ -177,7 +193,10 @@ const Navbar = () => {
                                 )}
                             </div>
                         ) : (
-                            <div className="navbar-right">
+                            <div className="navbar-right flex items-center">
+                                 <div className="navbar-item">
+                                    <CartIcon />
+                                </div>
                                 <div className="navbar-item">
                                     <a href="/register" className="navbar-link navbar-link__register">Register</a>
                                 </div>

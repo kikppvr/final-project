@@ -52,11 +52,11 @@ function LoginForm() {
         try {
             let response = await dispatch(loginUser(values));
             if (response) {
-                setShowLoadingModal(false);
+                // setShowLoadingModal(false);
                 setSuccessMessage("Login success!")
                 setShowSuccessModal(true);
             } else {
-                setShowLoadingModal(false);
+                // setShowLoadingModal(false);
                 setAlertMessage("User not found!");
                 setShowAlertModal(true);
             }

@@ -50,9 +50,9 @@ img {
     height: auto;
 }
 
-/* .modal-backdrop.fade{
+.modal-backdrop.fade{
     display: none;
-} */
+}
 a:hover {
     text-decoration: none;
 }

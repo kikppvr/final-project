@@ -1,0 +1,79 @@
+@import "../../assets/styles/breakpoints.scss";
+
+.products {
+    padding: 8rem 0 6rem 0;
+    background-color: #998e7e;
+}
+
+.products-title {
+    text-align: center;
+    font-weight: 600;
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 3rem;
+
+    @include tablet-small() {
+        font-size: 2rem;
+    }
+}
+
+.products-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.products-card {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    max-width: 300px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+
+    .products-image-wrapper {
+        overflow: hidden;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .products-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .products-name {
+        font-size: 1.5rem;
+        margin: 10px 0;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .products-price {
+        font-size: 1rem;
+        font-weight: 600;
+        color: rgb(251 56 56);
+    }
+
+    .btn-add-cart {
+        margin-top: 1rem;
+        background-color: black;
+        width: 100%;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+            background-color: #53a06e;
+        }
+    }
+
+    &:hover {
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    }
+}

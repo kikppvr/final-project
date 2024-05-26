@@ -8,6 +8,7 @@ import Footer from "./components/Footer/Footer";
 import HealthCalculations from "./pages/HealthCalculations/HealthCalculations";
 import Recipes from "./pages/Recipes/Recipes";
 import RecipeDetail from "./pages/RecipesDetail/RecipesDetail";
+import Products from "./pages/Products/Products";
 import Profile from "./pages/Profile/Profile";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import "./App.css";
@@ -24,6 +25,7 @@ function App() {
                         <Route path="/health-calculations" element={<HealthCalculations />} />
                         <Route path="/recipes" element={<Recipes />} />
                         <Route path="/recipes/:id" element={<RecipeDetail />} />
+                        <Route path="/products" element={<Products />} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/profile" element={<Profile />} />

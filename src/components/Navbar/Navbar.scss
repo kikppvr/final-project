@@ -170,6 +170,8 @@
         }
 
         .navbar-link__login {
+
+            background-color: transparent;
             transition: 0.3s all ease-in-out;
 
             &:hover {
@@ -224,6 +226,8 @@
     }
 
     .navbar-item {
+        background-color: transparent;
+        text-align: center;
         position: relative;
         transition: 0.3s all ease-in-out;
         cursor: pointer;
