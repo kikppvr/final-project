@@ -7,26 +7,29 @@ const LoadingModal = () => {
     const modalRef = useRef(null);
 
     useEffect(() => {
-        const modalElement = modalRef.current;
-        if (modalElement) {
-            console.log('Modal element found:', modalElement);
-            if (window.bootstrap && window.bootstrap.Modal) {
-        
-                // Show the modal immediately after the component is mounted
-                const bootstrapModal = new window.bootstrap.Modal(modalElement, {
-                    backdrop: 'static', // Prevent closing by clicking outside
-                    keyboard: false // Prevent closing by pressing the escape key
-                });
-                bootstrapModal.show();
+        const loadBootstrapModal = async () => {
+            const modalElement = modalRef.current;
+            if (modalElement) {
+                console.log('Modal element found:', modalElement);
+                if (window.bootstrap && window.bootstrap.Modal) {
+            
+                    // Show the modal immediately after the component is mounted
+                    const bootstrapModal = new window.bootstrap.Modal(modalElement, {
+                        backdrop: 'static', // Prevent closing by clicking outside
+                        keyboard: false // Prevent closing by pressing the escape key
+                    });
+                    bootstrapModal.show();
 
-                // Clean up function
-                return () => {
-                    bootstrapModal.hide();
-                };
-            } else{
-                console.error('Bootstrap Modal is not available in window.bootstrap');
+                    // Clean up function
+                    return () => {
+                        bootstrapModal.hide();
+                    };
+                } else{
+                    console.error('Bootstrap Modal is not available in window.bootstrap');
+                }
             }
         }
+        loadBootstrapModal();
     });
 
     return (
