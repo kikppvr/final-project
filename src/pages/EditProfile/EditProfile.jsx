@@ -27,11 +27,18 @@ const EditProfile = () => {
         // setShowSuccessModal(true)
     })
 
+    // const initialValues = {
+    //     _id: user._id, // Ensure _id is included
+    //     name: user.name,
+    //     username: user.username,
+    //     email: user.email,
+    // };
+
     const initialValues = {
-        _id: user._id, // Ensure _id is included
-        name: user.name,
-        username: user.username,
-        email: user.email,
+        _id: user ? user._id : "", // Ensure _id is included
+        name: user ? user.name : "",
+        username: user ? user.username : "",
+        email: user ? user.email : "",
     };
 
     const [hasValue, setHasValue] = useState({

@@ -1,5 +1,9 @@
 
 export const Types = {
+    //user
+    SET_USER: 'SET_USER',
+    LOGOUT_USER: 'LOGOUT_USER',
+
     //register
     REGISTER_REQUEST: 'REGISTER_REQUEST',
     REGISTER_SUCCESS: 'REGISTER_SUCCESS',

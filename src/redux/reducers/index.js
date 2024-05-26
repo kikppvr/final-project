@@ -9,6 +9,11 @@ const initialState = {
 
 const userReducer = (state = initialState, action) => {
     switch (action.type) {
+        case Types.SET_USER:
+            return { ...state, userInfo: action.payload };
+        case Types.LOGOUT_USER:
+            return { ...state, userInfo: null};
+
         case Types.REGISTER_REQUEST:
         case Types.LOGIN_REQUEST:
         case Types.UPDATE_PROFILE_REQUEST:

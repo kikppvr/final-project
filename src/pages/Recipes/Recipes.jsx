@@ -28,7 +28,9 @@ const Recipes = () => {
                 <div className="recipes-list">
                     {recipesData.map((recipe) => (
                         <Link to={`/recipes/${recipe.id}`} key={recipe.id} className="recipe-card">
-                            <img src={recipe.imageUrl} alt={recipe.name} className="recipe-image" />
+                            <div className="recipe-image-wrapper">
+                                <img src={recipe.imageUrl} alt={recipe.name} className="recipe-image" />
+                            </div>
                             <h2 className="recipe-name">{recipe.name}</h2>
                             <p className="recipe-description">{recipe.description}</p>
                         </Link>
