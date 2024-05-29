@@ -73,21 +73,24 @@ function RegisterForm() {
             const response = await dispatch(registerUser(values));
             console.log('response', response)
             if (response) { // Check if the registration was successful
+                // setShowLoadingModal(false);
                 setSuccessMessage("Registration successful!");
                 setShowSuccessModal(true);
                 resetForm();
             } else {
+                // setShowLoadingModal(false);
+
                 setAlertMessage("Registration failed. Please try again.");
                 setShowAlertModal(true);
             }
         } catch (error) {
+            setShowLoadingModal(false);
             console.error(error);
             setAlertMessage("An error occurred. Please try again.");
             setShowAlertModal(true);
-        } finally {
-            setShowLoadingModal(false);
-            setSubmitting(false);
-        }
+        }   
+        
+        setSubmitting(false);
     };
 
     const handleCloseModal = () => {

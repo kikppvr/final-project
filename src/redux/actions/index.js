@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Types } from "./types";
 
-const API_URL = "https://crudcrud.com/api/3dabf4e221784592b96d441a3f28b518/users"
+const API_URL = "https://crudcrud.com/api/89257c2057a04bebac9fc36bf88cf248/users"
 // Then use this URL in your requests
 
 // const API_URL = "/api/users";  // ใช้ Proxy Path
